@@ -1,0 +1,1 @@
+../lib/sub_programs/phage_finder/bin/HMM_searchs.sh

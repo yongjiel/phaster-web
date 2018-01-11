@@ -1,0 +1,143 @@
+.container.banner
+  = image_tag("banner.jpg", class: "responsive-img")
+.container.content 
+  p
+    b PHASTER 
+    | (
+    b PHA
+    | ge 
+    b S
+    | earch 
+    b T
+    | ool 
+    b E
+    | nhanced 
+    b R
+    | elease) is a significant upgrade to the popular 
+    a[href="http://phast.wishartlab.com" target="_blank"] 
+      | PHAST 
+    | web server for the rapid identification and annotation of prophage sequences within bacterial genomes and plasmids. While the steps in the phage identification pipeline in PHASTER remain largely the same as in the original PHAST, numerous software improvements and significant hardware enhancements have now made PHASTER faster, more efficient, more visually appealing and much more user friendly. In particular, PHASTER is now 4.3X  faster than PHAST when analyzing a typical bacterial genome. More specifically, software optimizations have made the backend of PHASTER 2.7X faster than PHAST. Likewise, the addition of more than 120 CPUs to the PHASTER compute cluster have greatly reduced processing times. PHASTER can now process a typical bacterial genome in 3 minutes from the raw sequence alone, or in 1.5 minutes when given a pre-annotated GenBank file. A number of other optimizations have been implemented, including automated algorithms to reduce the size and redundancy of PHASTER’s databases, improvements in handling multiple (metagenomic) queries and high user traffic, and the ability to perform automated look-ups against >14,000 previously PHAST/PHASTER annotated bacterial genomes (which can lead to complete phage annotations in seconds as opposed to minutes). PHASTER’s web interface has also been entirely rewritten. A new graphical genome browser has been added, gene/genome visualization tools have been improved, and the graphical interface is now more modern, robust, and user-friendly.
+
+.container.content#citation
+  p
+    b Please cite the following: 
+    blockquote
+      a[href="http://www.ncbi.nlm.nih.gov/pubmed/27141966"] Arndt, D., Grant, J., Marcu, A., Sajed, T., Pon, A., Liang, Y., Wishart, D.S. (2016) PHASTER: a better, faster version of the PHAST phage search tool. Nucleic Acids Res., 2016 May 3.
+      br
+      br
+      a[href="http://www.ncbi.nlm.nih.gov/pubmed/21672955"]Zhou,Y., Liang,Y., Lynch,K.H., Dennis,J.J. and Wishart,D.S. (2011) PHAST: a fast phage search tool. Nucleic Acids Res., 39, W347–W352.
+
+.container.content
+
+  h5 Select an input type:
+  .tab-wrapper
+    ul.tabs.input-tabs.front-page
+      li.tab.col.s3.first_child = link_to "Upload File".html_safe, "#file-in", class: (@selected_tab == "file" ? "active" : "")
+      li.tab.col.s3 = link_to "Enter Accession".html_safe, "#number-in", class: (@selected_tab == "identifier" ? "active" : "")
+      li.tab.col.s3.last-child = link_to "Paste Sequence", "#text-in", class: (@selected_tab == "text" ? "active" : "")
+
+  .row#file-in
+    .tab-content.col.s12
+      = form_for(@submission, html: {id: "file-form"}) do |f|
+        = render_form_errors(@submission)
+        = f.hidden_field 'category', value: 'upload'
+        .row
+          .file-field.col.s12
+            label for="sequence" Upload a GenBank formatted file or nucleotide sequence file (FASTA format)
+            .btn.file-btn.waves-effect.waves-light
+              span Choose File
+              = f.file_field :sequence
+            .file-path-wrapper
+              input.file-path#sequence-file-path type="text" placeholder="GenBank formatted file or nucleotide sequence file (FASTA format)" disabled="disabled" required="required"
+          .col.s12.right-align.form-example
+            | See an 
+            = link_to 'example GenBank file'.html_safe, File.join(root_url, 'examples', 'NC_000907.gbk')
+            |  or an 
+            = link_to 'example FASTA file'.html_safe, File.join(root_url, 'examples', 'NC_000907.fna')
+            | .
+          .col.s12
+            = check_box_tag :contigs, 1, @contigs, id: 'contigs', class: 'contigs'
+            label for="contigs" My FASTA file consists of metagenomic contigs
+          .col.s12
+            = check_box_tag :get_cache, 1, @get_cache, id: 'get-cache-1', class: 'get_cache'
+            label for="get-cache-1" Use pre-computed results if available (faster)
+      // Special case: Form buttons must be outside the form for
+      // jquery-fileupload to work
+      .form_buttons
+        = button_tag '<i class="material-icons left">done</i>Submit'.html_safe, type: :submit, class: "btn waves-effect waves-light", id: "file-submit"
+        = button_tag '<i class="material-icons left">clear</i>Reset'.html_safe, type: :reset, class: "btn waves-effect waves-light", id: "file-reset"
+        .submission-indicator
+          | Uploading data
+          .progress
+            .determinate
+        .second-submission-indicator
+          | Parsing data
+          .progress
+            .indeterminate
+        .or OR
+        = button_tag 'Run an Example', type: "button", class: "btn example-btn waves-effect waves-light", id: "file-example", example: "NZ_AP014565.1"
+        .remember_box
+          = check_box_tag :remember_search, 1, @remember_search, id: 'remember-search-1', class: 'remember-my-searches'
+          label for="remember-search-1" Remember My Searches
+
+
+  .row#number-in
+    .tab-content.col.s12
+      = form_for(@submission, html: {id: "accession-form"}) do |f|
+        = render_form_errors(@submission)
+        = f.hidden_field 'category', value: 'identifier'
+        .row
+          .col.s12 
+            label for="identifier" Input a GenBank accession number or GenInfo (GI) number, e.g. NC_000913 or 49175990
+          .col.s12 style = 'width: 40%'
+            = text_field_tag :identifier, params[:identifier], class: "validate", placeholder: "Accession or GI", required: true
+        .form_buttons
+          = button_tag '<i class="material-icons left">done</i>Submit'.html_safe, type: :submit, class: "btn waves-effect waves-light"
+          = button_tag '<i class="material-icons left">clear</i>Reset'.html_safe, type: :reset, class: "btn waves-effect waves-light"
+          .or OR
+          .submission-indicator
+            | Uploading data
+            .progress
+              .indeterminate
+          = button_tag 'Run an Example', type: "button", class: "btn example-btn waves-effect waves-light", id: "accession-example", example: "NZ_AP014565.1"
+          .remember_box
+            = check_box_tag :remember_search, 1, @remember_search, id: 'remember-search-2', class: 'remember-my-searches'
+            label for="remember-search-2" Remember My Searches
+
+  .row#text-in
+    .tab-content.col.s12
+      = form_for(@submission, html: {id: "sequence-form"}) do |f|
+        = render_form_errors(@submission)
+        = f.hidden_field 'category', value: 'text'
+        .row
+          .col.s12
+            label for="sequence_text" Paste a nucleotide sequence (raw or FASTA format) below
+            = text_area_tag :sequence_text, params[:sequence_text], class: "validate", placeholder: "Nucleotide sequence", required: true
+          .col.s12.right-align.form-example
+            | See an 
+            = link_to 'example FASTA sequence'.html_safe, File.join(root_url, 'examples', 'NC_000907.fna')
+            | .
+          .col.s12
+            = check_box_tag :get_cache, 1, @get_cache, id: 'get-cache-2', class: 'get_cache'
+            label for="get-cache-2" Use pre-computed results if available (faster)
+        .form_buttons
+          = button_tag '<i class="material-icons left">done</i>Submit'.html_safe, type: :submit, class: "btn waves-effect waves-light"
+          = button_tag '<i class="material-icons left">clear</i>Reset'.html_safe, type: :reset, class: "btn waves-effect waves-light"
+          .or OR
+          .submission-indicator
+            | Uploading data
+            .progress
+              .indeterminate
+          = button_tag 'Run an Example', type: "button", class: "btn example-btn waves-effect waves-light", id: "sequence-example", example: "NZ_AP014565.1"
+          .remember_box
+            = check_box_tag :remember_search, 1, @remember_search, id: 'remember-search-3', class: 'remember-my-searches'
+            label for="remember-search-3" Remember My Searches
+  p 
+    | Have lots of sequences to run? Try our 
+    = link_to 'URL API.', "#{main_app.instructions_path}#urlapi"
+
+.container.content
+  h5 Video tutorial
+  | Get an overview of PHASTER in this video tutorial:
+  .videoWrapper
+    embed src="https://www.youtube.com/embed/NMBo87Ts9s0"

@@ -1,0 +1,20 @@
+/ navigation styled for Bootstrap 3.0
+.navbar-fixed
+  nav
+    .nav-wrapper
+      .brand-logo
+        = link_to image_tag('phage_logo_white.svg'), root_path
+        = link_to 'PHASTER', root_path
+      a.button-collapse data-activates="mobile-nav" href="#" 
+        i.material-icons menu
+
+      / Hack: Have to repeat this twice to work as nav bar and mobile nav
+      ul#dropdown1.dropdown-content
+        == render 'layouts/about_links'
+      ul#dropdown1.dropdown-content
+        == render 'layouts/about_links'
+
+      ul.right.hide-on-med-and-down
+        == render 'layouts/navigation_links'
+      ul#mobile-nav.side-nav
+        == render 'layouts/navigation_links'

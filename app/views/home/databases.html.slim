@@ -1,0 +1,24 @@
+.container.banner
+  = image_tag("banner.jpg")
+
+.container.content 
+  h5 Databases for Download
+
+  table
+    tr
+      td
+        p
+          b Bacteria DB: 
+          = link_to 'Bacteria.db <i class="tiny material-icons">file_download</i>'.html_safe, '/downloads/bacteria_all_select.db'
+          br
+          | 3.3Gb Last update: Aug 3, 2017
+
+    tr
+      td
+        p
+          b Prophage/Virus DB: 
+          = link_to 'Prophage_Virus.db <i class="tiny material-icons">file_download</i>'.html_safe, '/downloads/prophage_virus.db'
+          br
+          | 80Mb Last update: Aug 3, 2017
+
+  br

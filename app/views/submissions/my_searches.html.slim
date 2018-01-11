@@ -1,0 +1,46 @@
+.container.content.wide
+  h5 My Searches
+  p
+    | This is a list of your previous searches that have been
+      remembered on this browser.
+
+  table#my-searches.striped
+    thead
+      tr
+        th ID
+        th Description
+        th Length (bp)
+        th Number of Phage
+        th Date Created
+        th.no-sort
+          .title Remember
+          #remember-choices
+            a[href='#' id='remember-all'] All 
+            | | 
+            a[href='#' id='remember-none'] None
+
+    tbody
+      - @submissions.each do |submission|
+        tr
+          td = link_to submission.job_id, submission
+          td = submission.description
+          td = submission.sequence_length
+          td = submission.phage_found
+          td = submission.created_at.to_date.strftime
+          td
+            = check_box_tag :remember_search, 1, true, id: submission.job_id, class: 'remember-search'
+            label for="#{submission.job_id}"
+
+      - @batches.each do |batch|
+        tr
+          td = link_to batch.batch_id, batch
+          td = batch.seq_count.to_s + " sequences"
+          td 
+          td 
+          td = batch.created_at.to_date.strftime
+          td
+            = check_box_tag :remember_search, 1, true, id: batch.batch_id, class: 'remember-search'
+            label for="#{batch.batch_id}"
+
+  br
+

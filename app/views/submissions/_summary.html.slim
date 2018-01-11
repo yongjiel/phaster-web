@@ -1,0 +1,144 @@
+// Data from summary.txt
+// Region position links to corresponding sequence in region_DNA.txt
+// Region details showed full data from summary.txt
+
+.result
+
+  - if @summary_error.present?
+    p.error = @summary_error
+
+    p
+      b Download summary as .txt file: 
+      = link_to 'summary.txt <i class="tiny material-icons">file_download</i>'.html_safe, File.join(root_url, 'jobs', @submission.job_id, 'summary.txt')
+  - else
+    p
+      b = @summary[:title]
+
+    p
+      b Download summary as .txt file: 
+      = link_to 'summary.txt <i class="tiny material-icons">file_download</i>'.html_safe, File.join(root_url, 'jobs', @submission.job_id, 'summary.txt')
+
+    p
+      b Total: 
+      = "#{@summary[:intact] + @summary[:questionable] + @summary[:incomplete]} prophage regions have been identified, of which #{@summary[:intact]} regions are intact, #{@summary[:incomplete]} regions are incomplete, and #{@summary[:questionable]} regions are questionable."
+
+    table.result-table
+      thead
+        tr
+          - Submission::SUMMARY_COLS.each do |col|
+            th = Submission::SUMMARY_DEFS[col][0]
+
+          th Details
+      tbody
+        - @summary[:regions].each_with_index do |region, i|
+
+          - if @submission.contigs?
+            - contig = @submission.contig_data.contig_for_region_number(region[:region])
+            - if contig.present? && contig.region_numbers.first == region[:region].to_i
+              tr
+                td colspan="100%"
+                  a.modal-trigger href="#region_dna#{i}"
+                    = contig.name
+
+          - category = region[:completeness].gsub(/\(\d+\)/, "")
+          tr[class="#{category}"]
+
+            - Submission::SUMMARY_COLS.each do |col|
+              td
+                - if col == :completeness
+                  = category
+                - elsif col == :score
+                  = region[:completeness].match(/\d+/)[0]
+                - elsif col == :most_common_phage_name
+                  = region[col].split(",").first
+                - elsif col == :region_position
+                  - if @submission.contigs
+                    - all_regions = region[col].split(":")
+                    - new_region = all_regions[-1]
+                  - else
+                    - new_region = region[col]
+
+                  a.modal-trigger href="#region_dna#{i}"
+                    = new_region + " "
+                    i.tiny.material-icons info_outline
+                - else
+                  = region[col]
+            td
+              a.modal-trigger href="#region#{i}"
+                | Show 
+                i.tiny.material-icons info_outline
+
+    // Modal data for region details
+    - @summary[:regions].each_with_index do |region, i|
+      .modal.modal-fixed-footer[id="region_dna#{i}"]
+        .modal-content
+          b Region DNA
+          pre = @summary[:region_dna][i]
+        .modal-footer
+          a.modal-action.modal-close.btn-flat href="#!" Close
+
+      .modal.modal-fixed-footer[id="region#{i}"]
+        .modal-content
+          b Region Details
+          table.details-table
+            tbody
+              - region.each do |key, val|
+                tr
+                  - if key == :completeness
+                    td Completeness(score)
+                    td = val
+                  - elsif key == :most_common_phage_name
+                    td Most Common Phage Name(hit genes count)
+                    td = val.gsub(/,/, "<br>").html_safe
+                  - else
+                    td = Submission::SUMMARY_DEFS[key][0]
+                    td = val
+          .legend-box
+            table
+              tbody
+              - region.each do |key, val|
+                tr
+                td = "#{Submission::SUMMARY_DEFS[key][0]}: "
+                td = Submission::SUMMARY_DEFS[key][1]
+        .modal-footer
+          a.modal-action.modal-close.btn-flat href="#!" Close
+
+    .legend-box
+      .intact.square
+      | Intact (score > 90)
+      br
+      .questionable.square
+      | Questionable (score 70-90)
+      br
+      .incomplete.square
+      | Incomplete (score < 70)
+      br
+      table
+        tbody
+          - Submission::SUMMARY_COLS.each do |col|
+            tr
+              td = "#{Submission::SUMMARY_DEFS[col][0]}: "
+              td = Submission::SUMMARY_DEFS[col][1]
+
+    // Hard code this section instead of grabbing from summary.txt for better formatting
+    p
+      b Criteria for scoring prophage regions (as intact, questionable, or incomplete):
+      br
+      | Method 1:
+      ol
+        li If the number of certain phage organism in <a href="http://www.ncbi.nlm.nih.gov/genomes/GenomesGroup.cgi?taxid=10239&opt=Virus&sort=genome" target="_blank">this table</a> is more than or equal to 100% of the total number of CDS of the region, the region is marked with total score 150. If less than 100%, method 2 and 3 will be used.
+
+      | Method 2:
+      ol
+        li If the number of certain phage organism in <a href="http://www.ncbi.nlm.nih.gov/genomes/GenomesGroup.cgi?taxid=10239&opt=Virus&sort=genome" target="_blank">this table</a> is more than 50% of the total number of CDS of the region, that phage organism is considered as the major potential phage for that region; the percentage of the total number of that phage organism in <a href="http://www.ncbi.nlm.nih.gov/genomes/GenomesGroup.cgi?taxid=10239&opt=Virus&sort=genome" target="_blank">this table</a> in the  total number of proteins of the region is calculated and then multipled by 100; the percentage of the length of that phage organism in <a href="http://www.ncbi.nlm.nih.gov/genomes/GenomesGroup.cgi?taxid=10239&opt=Virus&sort=genome" target="_blank">this table</a> in the length of the region is calculated and then multipled by 50 (phage head's encapsulation capability is considered).
+
+      | Method 3:
+      ol
+        li If any of the specific phage-related keywords (such as 'capsid', 'head', 'integrase', 'plate', 'tail', 'fiber', 'coat', 'transposase', 'portal', 'terminase', 'protease' or 'lysin') are present, the score will be increased by 10 for each keyword found.
+        li If the size of the region is greater than 30 Kb, the score will be increased by 10.
+        li If there are at least 40 proteins in the region, the score will be increased by 10.
+        li If all of the phage-related proteins and hypothetical proteins constitute more than 70% of the total number of proteins in the region, the score will be increased by 10.
+
+      | Compared the total score of method 2 with the total score of method 3, the bigger one is chosen as the total score of the region.
+      br
+      | If the region's total score is less than 70, it is marked as incomplete; if between 70 to 90, it is marked as questionable; if greater than 90, it is marked as intact.

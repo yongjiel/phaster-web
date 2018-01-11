@@ -1,0 +1,9 @@
+li = link_to 'Citation', main_app.root_path + "#citation"
+/ li class=('active' if current_page?(input_path)) = link_to 'Instructions', main_app.instructions_path
+li class=('active' if current_page?(statistics_path)) = link_to 'Statistics', main_app.statistics_path
+li class=('active' if current_page?(input_path)) = link_to 'Input', main_app.input_path
+li class=('active' if current_page?(output_path)) = link_to 'Output', main_app.output_path
+/ li class=('active' if current_page?(url_api_path)) = link_to 'URL API', main_app.url_api_path
+li class=('active' if current_page?(databases_path)) = link_to 'Databases', main_app.databases_path
+li class=('active' if current_page?(contact_path)) = link_to 'Contact', main_app.contact_path
+

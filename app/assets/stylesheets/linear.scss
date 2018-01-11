@@ -1,0 +1,219 @@
+#linear_viewer {
+  border: 2px solid #9e9e9e;
+  position: relative;
+}
+
+.linear_options {
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: #e0e0e0;
+  width: 240px;
+  min-height: 164px;
+  float: right;
+}
+
+.linear_sequence {
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: #e0e0e0;
+  height: 164px;
+  float: right;
+}
+
+#linear_charts {
+  background-color: white;
+  width: 100%;
+  height: 500px;
+  overflow-y: scroll;
+  display: block;
+  text-align: center;
+}
+
+#linear_legend {
+  text-align: left;
+  display: block;
+  background-color: #e0e0e0;
+  padding: 10px;
+  width: 100%;
+}
+
+.legend_col {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.linear_info {
+  text-align: left;
+  background-color: #e0e0e0;
+  padding: 10px;
+  margin: 10px 10px;
+  min-height: 164px;
+  width: 240px;
+  min-height: 164px;
+  display: inline-block;
+  float: left;
+}
+
+.linear_info .header,
+.linear_sequence .header,
+.modal-content .header,
+.linear_options .header {
+  font-weight: bold;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.linear_box {
+  border-bottom: 2px solid #9e9e9e;
+  padding: 10px;
+  overflow-y: scroll;
+  display: inline-block;
+  clear: both;
+  width: 100%;
+}
+
+.option-region-selection .plasmid-btn {
+  width: 35px;
+  margin-top: 0;
+  margin-left: 10px;
+  padding: 0;
+  display: inline;
+  height: 35px
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #bdbdbd;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-size: 10px;
+  fill: #9e9e9e;
+}
+
+.bar {
+  fill-opacity: 0.8;
+  stroke-opacity: 1;
+}
+
+.linear_label {
+  text-anchor: middle;
+  font-size: 12px;
+  fill: #9e9e9e;
+}
+
+.linear_label_line, {
+  stroke: #9e9e9e;
+  stroke-width: 1px;
+}
+
+.direction_line {
+  stroke: #ffa000;
+  stroke-width: 1px;
+}
+
+/* Different styles for combined viewer */
+#linear_viewer.linear_combined {
+  border-top: none;
+}
+
+#linear_viewer.linear_combined .linear_box {
+  border-bottom: none;
+}
+
+#linear_viewer.linear_combined .linear_chart {
+  display: none;
+}
+
+#linear_viewer.linear_combined #linear_name {
+  display: none;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 5px;
+}
+
+#linear_viewer.linear_combined #linear_placeholder {
+  height: 508px;
+  position: relative;
+}
+
+#linear_viewer.linear_combined #linear_placeholder div {
+  position: absolute;
+  top: 50%;
+  height: 50px;
+  margin-top: -50px;
+  width: 100%;
+}
+
+#linear_viewer.linear_combined .option-col {
+  display: inline-block;
+  width: auto;
+}
+
+#linear_viewer.linear_combined .linear_options .option-col:not(:last-child) {
+  margin-right: 5px;
+}
+
+#linear_viewer.linear_combined .linear_options {
+  width: auto;
+  min-height: 143px;
+}
+
+#linear_viewer.linear_combined .linear_sequence {
+  height: 143px;
+  float: left;
+}
+
+#linear_viewer.linear_combined .linear_sequence .header a {
+  font-weight: normal;
+}
+
+#linear_viewer.linear_combined #linear_charts {
+  height: 508px;
+}
+
+#plasmid-viewer, #linear_viewer {
+  min-width: 604px;
+}
+
+.blast_lysis_protein { background-color: #ef5350; fill: #ef5350; }
+.blast_terminase { background-color: #ec407a; fill: #ec407a; }
+.blast_portal_protein { background-color: #ab47bc; fill: #ab47bc;}
+.blast_protease { background-color: #7e57c2; fill: #7e57c2;}
+.blast_head_protein { background-color: #5c6bc0; fill: #5c6bc0;}
+.blast_tail_protein { background-color: #42a5f5; fill: #42a5f5;}
+.blast_attachment_site { background-color: #29b6f6; fill: #29b6f6;}
+.blast_integrase { background-color: #26c6da; fill: #26c6da;}
+.blast_phage_like_protein { background-color: #26a69a; fill: #26a69a;}
+.blast_hypothetical_protein { background-color: #66bb6a; fill: #66bb6a;}
+.blast_non_phage_like_protein { background-color: #9ccc65; fill: #9ccc65;}
+.blast_transposase { background-color: #d4e157; fill: #d4e157;}
+.blast_fiber_protein { background-color: #ffee58; fill: #ffee58;}
+.blast_plate_protein { background-color: #ffca28; fill: #ffca28;}
+.blast_trna { background-color: #ff7043; fill: #ff7043;}
+
+.blast_lysis_protein_header { border-bottom: 2px solid #e57373; }
+.blast_terminase_header { border-bottom: 2px solid #f06292; }
+.blast_portal_protein_header { border-bottom: 2px solid #ba68c8;}
+.blast_protease_header { border-bottom: 2px solid #9575cd;}
+.blast_head_protein_header { border-bottom: 2px solid #7986cb;}
+.blast_tail_protein_header { border-bottom: 2px solid #64b5f6;}
+.blast_attachment_site_header { border-bottom: 2px solid #4fc3f7;}
+.blast_integrase_header { border-bottom: 2px solid #4dd0e1;}
+.blast_phage_like_protein_header { border-bottom: 2px solid #4db6ac;}
+.blast_hypothetical_protein_header { border-bottom: 2px solid #81c784;}
+.blast_non_phage_like_protein_header { border-bottom: 2px solid #aed581;}
+.blast_transposase_header { border-bottom: 2px solid #dce775;}
+.blast_fiber_protein_header { border-bottom: 2px solid  #fff176;}
+.blast_plate_protein_header { border-bottom: 2px solid  #ffd54f;}
+.blast_trna_header { border-bottom: 2px solid #ff8a65;}

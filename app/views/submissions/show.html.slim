@@ -1,0 +1,87 @@
+- if @submission.failed?
+
+  .container.content.wide.alert.alert-danger.job-error
+    h5 Your submission failed to run. Please try again!
+    p
+      b Job ID: 
+      = @submission.job_id
+    - if @submission.error
+      p = @submission.error.html_safe
+    - if File.exist?(@submission.fail_path)
+      p = File.read(@submission.fail_path).html_safe
+
+    - if @batch
+      .right
+        p
+          = link_to "View Batch", batch_path(@batch), {:style=>'font-size:130%;'}
+    -else
+      .right
+        p
+          = check_box_tag :remember_me, 1, @remember_me, id: 'remember-me', 'data-job-id': @submission.job_id
+          label for="remember-me" Remember Me
+
+- else
+  .container.content.wide
+    - if @batch
+      .right
+        p
+          = link_to "View Batch", batch_path(@batch), {:style=>'font-size:130%;'}
+    -else
+      .right
+        p
+          = check_box_tag :remember_me, 1, @remember_me, id: 'remember-me', 'data-job-id': @submission.job_id
+          label for="remember-me" Remember Me
+
+    h5 Submission Results
+
+    p
+      b Sequence Name: 
+      = nah @submission.description
+
+    p
+      b GenBank Accession Number: 
+      = nah bio_link_out(:genbank, @submission.accession)
+
+    p
+      b GenInfo (GI) Number: 
+      = nah bio_link_out(:genbank, @submission.gi)
+
+    - if @submission.phage_found && @submission.phage_found > 0
+      
+      p
+        b Download Results: 
+        = link_to @submission.zip_data_name, submission_path(@submission, 'zip')
+
+      // Tabs for now but namy need to change this to separate pages depending on the load time
+      .row
+        .col.s12
+          .tab-wrapper
+            ul.tabs.results.z-depth-1
+              li.tab.col.s3 = link_to "Summary", "#summary", class: "active"
+              li.tab.col.s3 = link_to "Details", "#details"
+              li.tab.col.s3.last-child = link_to "Genome Viewer", "#circular"
+              / li.tab.col.s3 = link_to "Linear Genome", "#linear"
+
+      .row#summary
+        .tab-content.col.s12
+          == render 'summary'
+
+      .row#details
+        .tab-content.col.s12
+          == render 'details'
+
+      .row#circular
+        .tab-content.col.s12
+          == render 'circular'
+
+      / .row#linear
+      /   .tab-content.col.s12
+      /     == render 'linear'
+
+      = form_tag "download", method: "post", id: "imageform" do
+        = hidden_field_tag :data
+        = hidden_field_tag :filename
+
+    - else
+      p No phage were found in this sequence!
+

@@ -1,0 +1,26 @@
+.container.content.wide
+  h5 Pre-Calculated Genome Searches
+  p
+    | This is a list of all the genomes from
+      #{bio_link_to('NCBI', 'http://www.ncbi.nlm.nih.gov')} that have already been analyzed with
+      PHASTER.
+
+  table#my-searches.striped
+    thead
+      tr
+        th ID
+        th Description
+        th Length (bp)
+        th Number of Phage
+        th Date Created
+
+    tbody
+      - @submissions.each do |submission|
+        tr
+          td = link_to submission.job_id, submission
+          td = submission.description
+          td = submission.sequence_length
+          td = submission.phage_found
+          td = submission.created_at.to_date.strftime
+  br
+

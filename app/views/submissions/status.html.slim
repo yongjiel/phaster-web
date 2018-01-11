@@ -1,0 +1,25 @@
+.container.content.wide
+  #phaster-status[data-job-id="#{@submission.job_id}"]
+  h5 Your submission is processing!
+
+  b Job ID: 
+  = @submission.job_id
+
+  p Please wait, you will be redirected when your results are ready. You can also bookmark this page and come back later to check the progress and view your results. Or check <em>Remember Me</em> to save this page and check the results later by clicking <em>My Searches</em> in the top right corner.
+
+  - if @batch
+     p.center
+        = link_to "View Batch", batch_path(@batch), {:style=>'font-size:130%;'}
+  -else
+    p.center
+      = check_box_tag :remember_me, 1, @remember_me, id: 'remember-me', 'data-job-id': @submission.job_id
+      label for="remember-me" Remember Me
+
+  = image_tag "progress.gif", class: "progress_bar"
+
+  .result
+    p
+      b Status: 
+      span#status-text = @submission.display_status
+
+    p#process-text = ""

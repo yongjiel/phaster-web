@@ -1,0 +1,21 @@
+// If the submission didn't save there was an error!
+// Else do nothing but store the path to the submission
+// status page in the browser, the rest is handled
+// by jquery-fileupload
+
+<% if @submission.new_record? %>
+// This means it didn't save, so we reload the new page
+window.redirect = "<%= new_submission_path() %>";
+<% if @submission.description %>
+alert('The submission could not be uploaded:\n<%= j (@submission.description+"\n").html_safe + @submission.errors.full_messages.uniq.join("\n").html_safe %>');
+<% else %>
+alert('The submission could not be uploaded:\n<%= j @submission.errors.full_messages.uniq.join("\n").html_safe %>');
+<% end %>
+<% else %>
+// If the submission saved we give the url to the status page, or to the batch page if multiple sequences submitted
+<% if @batch %>
+window.redirect = "<%= batch_path @batch %>";
+<% else %>
+window.redirect = "<%= status_submission_path(@submission) %>";
+<% end %>
+<% end %>

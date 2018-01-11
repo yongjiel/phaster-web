@@ -1,0 +1,27 @@
+.container.content.wide
+
+  - header = "Batch " + @batch.batch_id + " - "+ @batch.seq_count.to_s + " sequences"
+
+  h6 #{header}
+
+  p
+    b Download Results 
+    | (completed only) - 
+    = link_to @batch.zip_data_name, batch_path(@batch, 'zip')
+
+  table
+    / thead
+
+    tbody
+      - @submissions.each do |submission|
+        tr
+          - if submission.description
+            td = link_to submission.job_id + " " + submission.description, submission_path(submission, batch_id: @batch.batch_id)
+          - else
+            td = link_to submission.job_id + " Unknown", submission_path(submission, batch_id: @batch.batch_id)
+  br
+
+  p.center
+    = check_box_tag :remember_me, 1, @remember_me, id: 'remember-me', 'data-job-id': @batch.batch_id
+    label for="remember-me" Remember Me
+

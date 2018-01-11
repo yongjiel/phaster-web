@@ -1,0 +1,127 @@
+// Data from png_input
+
+.result
+
+  - if @chart_error.present?
+    p.error = @chart_error
+
+  - else
+
+    #linear_viewer
+      #linear_charts
+        // Draw one chart for each region
+        - @chart[:regions].each do |key, region|
+          .linear_chart
+            .linear_info
+              .header[class="#{region[:completeness]}_header"] = "Prophage Region #{region[:number]}"
+              b Start: 
+              = region[:start]
+              br
+              b End: 
+              = region[:end]
+              br
+              b # CDS: 
+              = region[:sequences].length
+              br
+              b Predicted Type: 
+              = region[:completeness]
+              br
+              b GC%: 
+              = region[:gc]
+            .linear_options
+              b Viewer Options
+              button#expand_genome.btn.plasmid-btn.waves-effect.waves-light Expand Genome
+              button#toggle_labels.btn.plasmid-btn.waves-effect.waves-light Hide Sequence Labels
+              button#toggle_annotated.btn.plasmid-btn.waves-effect.waves-light Show Annotated Only
+              button#save_image.btn.plasmid-btn.waves-effect.waves-light
+                | Save Image 
+                i.tiny.material-icons file_download
+            .linear_sequence
+              | Click on a sequence to see details.
+            .linear_box[id="#{key}" data-info="#{region.to_json}"]
+
+            - region[:sequences].each_with_index do |sequence, i|
+              .modal.modal-fixed-footer[id="#{sequence[:region]}_linear_#{i}"]
+                .modal-content
+                  - name = sequence[:protein_name].split(";")[0]
+                  - direction = sequence[:strand].to_i > 0 ? "Forward" : "Backward"
+                  - homology = sequence[:match].gsub(/_like/, "-like").gsub(/_/, " ").capitalize
+                  div[class="header blast_#{sequence[:match]}_header"] = "Locus #{i + 1}: #{name} (#{sequence[:region].gsub("_", " ").capitalize})"
+
+                  b Locus: 
+                  = name
+                  br
+                  b ORF Start: 
+                  = sequence[:from]
+                  br
+                  b ORF Stop: 
+                  = sequence[:to]
+                  br
+                  b Strand: 
+                  = direction
+                  br
+                  b Protein Sequence: 
+                  = sequence[:sequence]
+                  br
+                  b Homolog/Ortholog Species: 
+                  = homology
+                  br
+                  b Homolog/Ortholog Protein: 
+                  = sequence[:protein_name].gsub(";", ", ")
+                  br
+                  b Homolog/Ortholog E-Value: 
+                  = sequence[:evalue]
+
+                .modal-footer
+                  a.modal-action.modal-close.btn-flat href="#!" Close
+
+      #linear_legend
+        .legend_col
+          .blast_lysis_protein.square
+          | Lysis
+          br
+          .blast_terminase.square
+          | Terminase
+          br
+          .blast_portal_protein.square
+          | Portal Protein
+        .legend_col
+          .blast_protease.square
+          | Protease
+          br
+          .blast_head_protein.square
+          | Coat Protein
+          br
+          .blast_tail_protein.square
+          | Tail Shaft
+        .legend_col
+          .blast_attachment_site.square
+          | Attachment Site
+          br
+          .blast_integrase.square
+          | Integrase
+          br
+          .blast_phage_like_protein.square
+          | Phage-like Protein
+        .legend_col
+          .blast_hypothetical_protein.square
+          | Hypotheical Protein
+          br
+          .blast_non_phage_like_protein.square
+          | Other
+          br
+          .blast_transposase.square
+          | Transposase
+        .legend_col
+          .blast_fiber_protein.square
+          | Fiber Protein
+          br
+          .blast_plate_protein.square
+          | Plate Protein
+          br
+          .blast_trna.square
+          | tRNA
+
+  p
+    b Download data as .txt file: 
+    = link_to 'png_input <i class="tiny material-icons">file_download</i>'.html_safe, File.join(root_url, 'jobs', @submission.job_id, 'png_input')

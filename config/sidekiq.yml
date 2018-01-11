@@ -1,0 +1,11 @@
+# Set in deploy.rb
+# ---
+
+# :concurrency: 2
+# :logfile: ./log/sidekiq.log
+# :pidfile: ./tmp/phaster.sidekiq.pid
+# production:
+:concurrency: 4
+:queues:
+  - default
+  - low

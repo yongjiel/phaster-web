@@ -1,0 +1,23 @@
+.container.banner
+  = image_tag("banner.jpg")
+
+.container.content 
+  h5 Additional Downloads
+
+  table
+    tr
+      td
+        p
+          = link_to 'bacteria_all_select_header_lines.db <i class="tiny material-icons">file_download</i>'.html_safe, '/downloads/bacteria_all_select_header_lines.db'
+
+    tr
+      td
+        p
+          = link_to 'prophage_virus_header_lines.db <i class="tiny material-icons">file_download</i>'.html_safe, '/downloads/prophage_virus_header_lines.db'
+
+    tr
+      td
+        p
+          = link_to 'vgenome.tbl <i class="tiny material-icons">file_download</i>'.html_safe, '/downloads/vgenome.tbl'
+
+  br

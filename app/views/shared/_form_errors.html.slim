@@ -1,0 +1,12 @@
+- if entry.errors.any?
+  .error-explanation.alert.alert-danger
+  	- if entry.description
+	  h6
+	  	= entry.description
+    h6
+      = pluralize(entry.errors.count, "error")
+      |  prohibited this job from being started:
+    ul
+      - entry.errors.full_messages.uniq.each do |msg|
+        li
+          = msg

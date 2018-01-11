@@ -1,0 +1,67 @@
+// Data from detail.txt
+// Sequence details showed full data from detail.txt
+
+.result
+
+  - if @details_error.present?
+    p.error = @details_error
+
+    p
+      b Download details as .txt file: 
+    = link_to 'detail.txt <i class="tiny material-icons">file_download</i>'.html_safe, File.join(root_url, 'jobs', @submission.job_id, 'detail.txt')
+
+  - else
+    p
+      b = @details[:title]
+
+    p
+      b Download details as .txt file: 
+      = link_to 'detail.txt <i class="tiny material-icons">file_download</i>'.html_safe, File.join(root_url, 'jobs', @submission.job_id, 'detail.txt')
+
+    .legend-box
+      .phage_hit.square
+      | Hits against Virus and Prophage Database
+      br
+      .bacterial_hit.square
+      | Hits against Bacterial Database or GenBank File
+      br
+
+    - @details[:regions].each do |name, region|
+      p
+
+        b = "#{name.to_s.capitalize}, total #{region.length} CDS"
+      table.result-table
+        thead
+          tr
+            th #
+            - Submission::DETAILS_COLS.each do |key, val|
+              th = val
+        tbody
+          - region.each_with_index do |sequence, i|
+            - category = (sequence[:blast_hit] =~ /^(PRO)?PHAGE/) ? "phage_hit" : "bacterial_hit"
+            tr[class="#{category}"]
+              td = i + 1
+              - Submission::DETAILS_COLS.each do |key, val|
+                - if key == :prophage_pro_seq
+                  td
+                    a.modal-trigger href="##{name.parameterize.underscore.to_sym.to_s}_sequence_#{i}"
+                      | Show
+                      i.tiny.material-icons info_outline
+                - elsif key == :evalue
+                  td = (sequence[key] =~ /N\/A/ ? 0.0 : sequence[key])
+                - else
+                  td = sequence[key]
+
+      // Model data for sequences
+      - region.each_with_index do |sequence, i|
+        .modal.modal-fixed-footer[id="#{name.parameterize.underscore.to_sym.to_s}_sequence_#{i}"]
+          .modal-content
+            b Sequence
+            pre.wrap_sequence
+              - sequence_name = sequence[:cds_position]
+
+              = ">#{sequence_name}"
+              br
+              = sequence[:prophage_pro_seq]
+          .modal-footer
+            a.modal-action.modal-close.btn-flat href="#!" Close

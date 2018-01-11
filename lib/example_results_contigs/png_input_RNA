@@ -1,0 +1,185 @@
+> Genome; Raw sequence 4641652
+         from       to      strand      match      RNA_name     EVALUE     match_sequence   contig
+section   225381        225457        +0    tRNA                       tRNA,type:Ile,anti_codon:GAT                                             N/A        AGGCTTGTAGCTCAGGTGGTTAGAGCGCACCCCTGATAAGGGTGAGGTCGGTGGTTCAAGTCCACTCAGGCCTACCA   contig 1
+
+section   225500        225575        +0    tRNA                       tRNA,type:Ala,anti_codon:TGC                                             N/A        GGGGCTATAGCTCAGCTGGGAGAGCGCCTGCTTTGCACGCAGGAGGTCTGCGGTTCGATCCCGCATAGCTCCACCA   contig 1
+
+section   228928        229004        +0    tRNA                       tRNA,type:Asp,anti_codon:GTC                                             N/A        GGAGCGGTAGTTCAGTCGGTTAGAATACCTGCCTGTCACGCAGGGGGTCGCGGGTTCGAGTCCCGTCCGTTCCGCCA   contig 1
+
+section   236931        237007        +0    tRNA                       tRNA,type:Asp,anti_codon:GTC                                             N/A        GGAGCGGTAGTTCAGTCGGTTAGAATACCTGCCTGTCACGCAGGGGGTCGCGGGTTCGAGTCCCGTCCGTTCCGCCA   contig 1
+
+section   262871        262946        +0    tRNA                       tRNA,type:Thr,anti_codon:CGT                                             N/A        GCCGATATAGCTCAGTTGGTAGAGCAGCGCATTCGTAATGCGAAGGTCGTAGGTTCGACTCCTATTATCGGCACCA   contig 1
+
+section   297178        297254        +0    tRNA                       tRNA,type:Thr,anti_codon:CGT                                             N/A        GCTCAAGTAGTTAAAAATGCATTAACATCGCATTCGTAATGCGAAGGTCGTAGGTTCGACTCCTATTATCGGCACCA   contig 1
+
+section   345334        345414        +0    tRNA                       tRNA,type:Pseudo,anti_codon:???                                          N/A        CCGCCATTAGCTCATCAGGAAGAGCAGACGACAACCAGGATTGTTGTATGGTACGGGGTTCGAGGCCTCGATGGCGGTCCA   contig 1
+
+section   564723        564799        +0    tRNA                       tRNA,type:Arg,anti_codon:TCT                                             N/A        GCGCCCTTAGCTCAGTTGGATAGAGCAACGACCTTCTAAGTCGTGGGCCGCAGGTTCGAATCCTGCAGGGCGCGCCA   contig 1
+
+section   121430        121504        -0    tRNA                       tRNA,type:Gln,anti_codon:CTG                                             N/A        TGGGGTATCGCCAAGCGGTAAGGCACCGGATTCTGATTCCGGCATTCCGAGGTTCGAATCCTCGTACCCCAGCCA   contig 2 at 575000
+
+section   121542        121616        -0    tRNA                       tRNA,type:Gln,anti_codon:CTG                                             N/A        TGGGGTATCGCCAAGCGGTAAGGCACCGGATTCTGATTCCGGCATTCCGAGGTTCGAATCCTCGTACCCCAGCCA   contig 2 at 575000
+
+section   121664        121740        -0    tRNA                       tRNA,type:Met,anti_codon:CAT                                             N/A        GGCTACGTAGCTCAGTTGGTTAGAGCACATCACTCATAATGATGGGGTCACAGGTTCGAATCCCGTCGTAGCCACCA   contig 2 at 575000
+
+section   121756        121830        -0    tRNA                       tRNA,type:Gln,anti_codon:TTG                                             N/A        TGGGGTATCGCCAAGCGGTAAGGCACCGGTTTTTGATACCGGCATTCCCTGGTTCGAATCCAGGTACCCCAGCCA   contig 2 at 575000
+
+section   121865        121939        -0    tRNA                       tRNA,type:Gln,anti_codon:TTG                                             N/A        TGGGGTATCGCCAAGCGGTAAGGCACCGGTTTTTGATACCGGCATTCCCTGGTTCGAATCCAGGTACCCCAGCCA   contig 2 at 575000
+
+section   121963        122047        -0    tRNA                       tRNA,type:Leu,anti_codon:TAG                                             N/A        GCGGGAGTGGCGAAATTGGTAGACGCACCAGATTTAGGTTCTGGCGCCGCAAGGTGTGCGAGTTCAAGTCTCGCCTCCCGCACCA   contig 2 at 575000
+
+section   122057        122133        -0    tRNA                       tRNA,type:Met,anti_codon:CAT                                             N/A        GGCTACGTAGCTCAGTTGGTTAGAGCACATCACTCATAATGATGGGGTCACAGGTTCGAATCCCGTCGTAGCCACCA   contig 2 at 575000
+
+section   205554        205629        +0    tRNA                       tRNA,type:Lys,anti_codon:TTT                                             N/A        GGGTCGTTAGCTCAGTTGGTAGAGCAGTTGACTTTTAATCAATTGGTCGCAGGTTCGAATCCTGCACGACCCACCA   contig 2 at 575000
+
+section   205765        205840        +0    tRNA                       tRNA,type:Val,anti_codon:TAC                                             N/A        GGGTGATTAGCTCAGCTGGGAGAGCACCTCCCTTACAAGGAGGGGGTCGGCGGTTCGATCCCGTCATCACCCACCA   contig 2 at 575000
+
+section   205843        205918        +0    tRNA                       tRNA,type:Lys,anti_codon:TTT                                             N/A        GGGTCGTTAGCTCAGTTGGTAGAGCAGTTGACTTTTAATCAATTGGTCGCAGGTTCGAATCCTGCACGACCCACCA   contig 2 at 575000
+
+section   206068        206143        +0    tRNA                       tRNA,type:Val,anti_codon:TAC                                             N/A        GGGTGATTAGCTCAGCTGGGAGAGCACCTCCCTTACAAGGAGGGGGTCGGCGGTTCGATCCCGTCATCACCCACCA   contig 2 at 575000
+
+section   206147        206222        +0    tRNA                       tRNA,type:Lys,anti_codon:TTT                                             N/A        GGGTCGTTAGCTCAGTTGGTAGAGCAGTTGACTTTTAATCAATTGGTCGCAGGTTCGAATCCTGCACGACCCACCA   contig 2 at 575000
+
+section   206369        206444        +0    tRNA                       tRNA,type:Lys,anti_codon:TTT                                             N/A        GGGTCGTTAGCTCAGTTGGTAGAGCAGTTGACTTTTAATCAATTGGTCGCAGGTTCGAATCCTGCACGACCCACCA   contig 2 at 575000
+
+section   206577        206652        +0    tRNA                       tRNA,type:Lys,anti_codon:TTT                                             N/A        GGGTCGTTAGCTCAGTTGGTAGAGCAGTTGACTTTTAATCAATTGGTCGCAGGTTCGAATCCTGCACGACCCACCA   contig 2 at 575000
+
+section   350884        350971        -0    tRNA                       tRNA,type:Ser,anti_codon:GGA                                             N/A        GGTGAGGTGTCCGAGTGGCTGAAGGAGCACGCCTGGAAAGTGTGTATACGGCAACGTATCGGGGGTTCGAATCCCCCCCTCACCGCCA   contig 2 at 575000
+
+section   456625       456712       -0    tRNA                       tRNA,type:Ser,anti_codon:TGA                                             N/A        GGAAGTGTGGCCGAGCGGTTGAAGGCACCGGTCTTGAAAACCGGCGACCCGAAAGGGTTCCAGAGTTCGAATCTCTGCGCTTCCGCCA   contig 2 at 575000
+
+section   522565       522652       -0    tRNA                       tRNA,type:Ser,anti_codon:GGA                                             N/A        GGTGAGGTGTCCGAGTGGCTGAAGGAGCACGCCTGGAAAGTGTGTATACGGCAACGTATCGGGGGTTCGAATCCCCCCCTCACCGCCA   contig 2 at 575000
+
+section   77046       77130       -0    tRNA                       tRNA,type:Tyr,anti_codon:GTA                                             N/A        GGTGGGGTTCCCGAGCGGCCAAAGGGAGCAGACTGTAAATCTGCCGTCATCGACTTCGAAGGTTCGAATCCTTCCCCCACCACCA   contig 4 at 1210200
+
+section   77340       77424       -0    tRNA                       tRNA,type:Tyr,anti_codon:GTA                                             N/A        GGTGGGGTTCCCGAGCGGCCAAAGGGAGCAGACTGTAAATCTGCCGTCATCGACTTCGAAGGTTCGAATCCTTCCCCCACCACCA   contig 4 at 1210200
+
+section   536237       536313       +0    tRNA                       tRNA,type:Val,anti_codon:GAC                                             N/A        GCGTTCATAGCTCAGTTGGTTAGAGCACCACCTTGACATGGTGGGGGTCGTTGGTTCGAGTCCAATTGAACGCACCA   contig 4 at 1210200
+
+section   536318       536394       +0    tRNA                       tRNA,type:Val,anti_codon:GAC                                             N/A        GCGTCCGTAGCTCAGTTGGTTAGAGCACCACCTTGACATGGTGGGGGTCGGTGGTTCGAGTCCACTCGGACGCACCA   contig 4 at 1210200
+
+section   781617       781703       -0    tRNA                       tRNA,type:Leu,anti_codon:TAA                                             N/A        GCCCGGATGGTGGAATCGGTAGACACAAGGGATTTAAAATCCCTCGGCGTTCGCGCTGTGCGGGTTCAAGTCCCGCTCCGGGTACCA   contig 4 at 1210200
+
+section   781716       781789       -0    tRNA                       tRNA,type:Cys,anti_codon:GCA                                             N/A        GGCGCGTTAACAAAGCGGTTATGTAGCGGATTGCAAATCCGTCTAGTCCGGTTCGACTCCGGAACGCGCCTCCA   contig 4 at 1210200
+
+section   781844       781919       -0    tRNA                       tRNA,type:Gly,anti_codon:GCC                                             N/A        GCGGGAATAGCTCAGTTGGTAGAGCACGACCTTGCCAAGGTCGGGGTCGCGAGTTCGAGTCTCGTTTCCCGCTCCA   contig 4 at 1210200
+
+section   833270       833359       -0    tRNA                       tRNA,type:Ser,anti_codon:CGA                                             N/A        GGAGAGATGCCGGAGCGGCTGAACGGACCGGTCTCGAAAACCGGAGTAGGGGCAACTCTACCGGGGGTTCAAATCCCCCTCTCTCCGCCA   contig 4 at 1210200
+
+section   834351       834426       +0    tRNA                       tRNA,type:Asn,anti_codon:GTT                                             N/A        TCCTCTGTAGTTCAGTCGGTAGAACGGCGGACTGTTAATCCGTATGTCACTGGTTCGAGTCCAGTCAGAGGAGCCA   contig 4 at 1210200
+
+section   847829       847904       -0    tRNA                       tRNA,type:Asn,anti_codon:GTT                                             N/A        TCCTCTGTAGTTCAGTCGGTAGAACGGCGGACTGTTAATCCGTATGTCACTGGTTCGAGTCCAGTCAGAGGAGCCA   contig 4 at 1210200
+
+section   849653       849728       +0    tRNA                       tRNA,type:Asn,anti_codon:GTT                                             N/A        TCCTCTGTAGTTCAGTCGGTAGAACGGCGGACTGTTAATCCGTATGTCACTGGTTCGAGTCCAGTCAGAGGAGCCA   contig 4 at 1210200
+
+section   852062       852137       +0    tRNA                       tRNA,type:Asn,anti_codon:GTT                                             N/A        TCCTCTGTAGTTCAGTCGGTAGAACGGCGGACTGTTAATCCGTATGTCACTGGTTCGAGTCCAGTCAGAGGAGCCA   contig 4 at 1210200
+
+section   1076013       1076089       +0    tRNA                       tRNA,type:Pro,anti_codon:GGG                                             N/A        CGGCACGTAGCGCAGCCTGGTAGCGCACCGTCATGGGGTGTCGGGGGTCGGAGGTTCAAATCCTCTCGTGCCGACCA   contig 4 at 1210200
+
+section   1256111       1256185       +0    tRNA                       tRNA,type:Arg,anti_codon:CCT                                             N/A        GTCCTCTTAGTTAAATGGATATAACGAGCCCCTCCTAAGGGCTAATTGCAGGTTCGATTCCTGCAGGGGACACCA   contig 4 at 1210200
+
+section   1307843       1307918       -0    tRNA                       tRNA,type:Ala,anti_codon:GGC                                             N/A        GGGGCTATAGCTCAGCTGGGAGAGCGCTTGCATGGCATGCAAGAGGTCAGCGGTTCGATCCCGCTTAGCTCCACCA   contig 4 at 1210200
+
+section   1307958       1308033       -0    tRNA                       tRNA,type:Ala,anti_codon:GGC                                             N/A        GGGGCTATAGCTCAGCTGGGAGAGCGCTTGCATGGCATGCAAGAGGTCAGCGGTTCGATCCCGCTTAGCTCCACCA   contig 4 at 1210200
+
+section   1310733       1310808       +0    tRNA                       tRNA,type:Val,anti_codon:TAC                                             N/A        GGGTGATTAGCTCAGCTGGGAGAGCACCTCCCTTACAAGGAGGGGGTCGGCGGTTCGATCCCGTCATCACCCACCA   contig 4 at 1210200
+
+section   1310853       1310928       +0    tRNA                       tRNA,type:Val,anti_codon:TAC                                             N/A        GGGTGATTAGCTCAGCTGGGAGAGCACCTCCCTTACAAGGAGGGGGTCGGCGGTTCGATCCCGTCATCACCCACCA   contig 4 at 1210200
+
+section   1310975       1311050       +0    tRNA                       tRNA,type:Val,anti_codon:TAC                                             N/A        GGGTGATTAGCTCAGCTGGGAGAGCACCTCCCTTACAAGGAGGGGGTCGGCGGTTCGATCCCGTCATCACCCACCA   contig 4 at 1210200
+
+section   1311055       1311130       +0    tRNA                       tRNA,type:Lys,anti_codon:TTT                                             N/A        GGGTCGTTAGCTCAGTTGGTAGAGCAGTTGACTTTTAATCAATTGGTCGCAGGTTCGAATCCTGCACGACCCACCA   contig 4 at 1210200
+
+section   1519171       1519246       -0    tRNA                       tRNA,type:Glu,anti_codon:TTC                                             N/A        GTCCCCTTCGTCTAGAGGCCCAGGACACCGCCCTTTCACGGCGGTAACAGGGGTTCGAATCCCCTAGGGGACGCCA   contig 4 at 1210200
+
+section   1575564       1575639       -0    tRNA                       tRNA,type:Met,anti_codon:CAT                                             N/A        GGCCCTTTAGCTCAGTGGTTAGAGCAGGCGACTCATAATCGCTTGGTCGCTGGTTCAAGTCCAGCAAGGGCCACCA   contig 4 at 1210200
+
+section   1607586       1607662       -0    tRNA                       tRNA,type:Arg,anti_codon:ACG                                             N/A        GCATCCGTAGCTCAGCTGGATAGAGTACTCGGCTACGAACCGAGCGGTCGGAGGTTCGAATCCTCCCGGATGCACCA   contig 4 at 1210200
+
+section   1607861       1607937       -0    tRNA                       tRNA,type:Arg,anti_codon:ACG                                             N/A        GCATCCGTAGCTCAGCTGGATAGAGTACTCGGCTACGAACCGAGCGGTCGGAGGTTCGAATCCTCCCGGATGCACCA   contig 4 at 1210200
+
+section   1608000       1608076       -0    tRNA                       tRNA,type:Arg,anti_codon:ACG                                             N/A        GCATCCGTAGCTCAGCTGGATAGAGTACTCGGCTACGAACCGAGCGGTCGGAGGTTCGAATCCTCCCGGATGCACCA   contig 4 at 1210200
+
+section   1608275       1608351       -0    tRNA                       tRNA,type:Arg,anti_codon:ACG                                             N/A        GCATCCGTAGCTCAGCTGGATAGAGTACTCGGCTACGAACCGAGCGGTCGGAGGTTCGAATCCTCCCGGATGCACCA   contig 4 at 1210200
+
+section   1608355       1608447       -0    tRNA                       tRNA,type:Ser,anti_codon:GCT                                             N/A        GGTGAGGTGGCCGAGAGGCTGAAGGCGCTCCCCTGCTAAGGGAGTATGCGGTCAAAAGCTGCATCCGGGGTTCGAATCCCCGCCTCACCGCCA   contig 4 at 1210200
+
+section   1737189       1737265       +0    tRNA                       tRNA,type:Met,anti_codon:CAT                                             N/A        CGCGGGGTGGAGCAGCCTGGTAGCTCGTCGGGCTCATAACCCGAAGGTCGTCGGTTCAAATCCGGCCCCCGCAACCA   contig 4 at 1210200
+
+section   1737299       1737375       +0    tRNA                       tRNA,type:Met,anti_codon:CAT                                             N/A        CGCGGGGTGGAGCAGCCTGGTAGCTCGTCGGGCTCATAACCCGAAGGTCGTCGGTTCAAATCCGGCCCCCGCAACCA   contig 4 at 1210200
+
+section   1737409       1737485       +0    tRNA                       tRNA,type:Met,anti_codon:CAT                                             N/A        CGCGGGGTGGAGCAGCCTGGTAGCTCGTCGGGCTCATAACCCGAAGGTCGTCGGTTCAAATCCGGCCCCCGCAACCA   contig 4 at 1210200
+
+section   1788786       1788859       -0    tRNA                       tRNA,type:Gly,anti_codon:CCC                                             N/A        GCGGGCGTAGTTCAATGGTAGAACGAGAGCTTCCCAAGCTCTATACGAGGGTTCGATTCCCTTCGCCCGCTCCA   contig 4 at 1210200
+
+section   1900168       1900243       +0    tRNA                       tRNA,type:Phe,anti_codon:GAA                                             N/A        GCCCGGATAGCTCAGTCGGTAGAGCAGGGGATTGAAAATCCCCGTGTCCTTGGTTCGATTCCGAGTCCGGGCACCA   contig 4 at 1210200
+
+section   2005400       2005475       +0    tRNA                       tRNA,type:Met,anti_codon:CAT                                             N/A        GGCCCCTTAGCTCAGTGGTTAGAGCAGGCGACTCATAATCGCTTGGTCGCTGGTTCAAGTCCAGCAGGGGCCACCA   contig 4 at 1210200
+
+section   2108015       2108091       -0    tRNA                       tRNA,type:Met,anti_codon:CAT                                             N/A        CGCGGGGTGGAGCAGCCTGGTAGCTCGTCGGGCTCATAACCCGAAGATCGTCGGTTCAAATCCGGCCCCCGCAACCA   contig 4 at 1210200
+
+section   2111874       2111960       -0    tRNA                       tRNA,type:Leu,anti_codon:GAG                                             N/A        GCCGAGGTGGTGGAATTGGTAGACACGCTACCTTGAGGTGGTAGTGCCCAATAGGGCTTACGGGTTCAAGTCCCGTCCTCGGTACCA   contig 4 at 1210200
+
+section   2213382       2213457       -0    tRNA                       tRNA,type:Thr,anti_codon:GGT                                             N/A        GCTGATATGGCTCAGTTGGTAGAGCGCACCCTTGGTAAGGGTGAGGTCCCCAGTTCGACTCTGGGTATCAGCACCA   contig 4 at 1210200
+
+section   2216760       2216835       -0    tRNA                       tRNA,type:Ala,anti_codon:TGC                                             N/A        GGGGCTATAGCTCAGCTGGGAGAGCGCCTGCTTTGCACGCAGGAGGTCTGCGGTTCGATCCCGCATAGCTCCACCA   contig 4 at 1210200
+
+section   2216878       2216954       -0    tRNA                       tRNA,type:Ile,anti_codon:GAT                                             N/A        AGGCTTGTAGCTCAGGTGGTTAGAGCGCACCCCTGATAAGGGTGAGGTCGGTGGTTCAAGTCCACTCAGGCCTACCA   contig 4 at 1210200
+
+section   2498418       2498494       -0    tRNA                       tRNA,type:Pro,anti_codon:CGG                                             N/A        CGGTGATTGGCGCAGCCTGGTAGCGCACTTCGTTCGGGACGAAGGGGTCGGAGGTTCGAATCCTCTATCACCGACCA   contig 4 at 1210200
+
+section   2626024       2626114       +0    tRNA                       tRNA,type:SeC(p),anti_codon:TCA                                          N/A        GGAAGATCGTCGTCTCCGGTGAGGCGGCTGGACTTCAAATCCAGTTGGGGCCGCCAGCGGTCCCGGGCAGGTTCGACTCCTGTGATCTTCC   contig 4 at 1210200
+
+section   2733237       2733312       +0    tRNA                       tRNA,type:Glu,anti_codon:TTC                                             N/A        GTCCCCTTCGTCTAGAGGCCCAGGACACCGCCCTTTCACGGCGGTAACAGGGGTTCGAATCCCCTAGGGGACGCCA   contig 4 at 1210200
+
+section   2736674       2736750       +0    tRNA                       tRNA,type:Asp,anti_codon:GTC                                             N/A        GGAGCGGTAGTTCAGTCGGTTAGAATACCTGCCTGTCACGCAGGGGGTCGCGGGTTCGAGTCCCGTCCGTTCCGCCA   contig 4 at 1210200
+
+section   2736759       2736834       +0    tRNA                       tRNA,type:Trp,anti_codon:CCA                                             N/A        AGGGGCGTAGTTCAATTGGTAGAGCACCGGTCTCCAAAACCGGGTGTTGGGAGTTCGAGTCTCTCCGCCCCTGCCA   contig 4 at 1210200
+
+section   2772177       2772253       +0    tRNA                       tRNA,type:Arg,anti_codon:CCG                                             N/A        GCGCCCGTAGCTCAGCTGGATAGAGCGCTGCCCTCCGGAGGCAGAGGTCTCAGGTTCGAATCCTGTCGGGCGCGCCA   contig 4 at 1210200
+
+section   2772312       2772387       +0    tRNA                       tRNA,type:His,anti_codon:GTG                                             N/A        GTGGCTATAGCTCAGTTGGTAGAGCCCTGGATTGTGATTCCAGTTGTCGTGGGTTCGAATCCCATTAGCCACCCCA   contig 4 at 1210200
+
+section   2772408       2772494       +0    tRNA                       tRNA,type:Leu,anti_codon:CAG                                             N/A        GCGAAGGTGGCGGAATTGGTAGACGCGCTAGCTTCAGGTGTTAGTGTCCTTACGGACGTGGGGGTTCAAGTCCCCCCCCTCGCACCA   contig 4 at 1210200
+
+section   2772537       2772613       +0    tRNA                       tRNA,type:Pro,anti_codon:TGG                                             N/A        CGGCGAGTAGCGCAGCTTGGTAGCGCAACTGGTTTGGGACCAGTGGGTCGGAGGTTCGAATCCTCTCTCGCCGACCA   contig 4 at 1210200
+
+section   2826943       2827019       +0    tRNA                       tRNA,type:Ile,anti_codon:GAT                                             N/A        AGGCTTGTAGCTCAGGTGGTTAGAGCGCACCCCTGATAAGGGTGAGGTCGGTGGTTCAAGTCCACTCAGGCCTACCA   contig 4 at 1210200
+
+section   2827062       2827137       +0    tRNA                       tRNA,type:Ala,anti_codon:TGC                                             N/A        GGGGCTATAGCTCAGCTGGGAGAGCGCCTGCTTTGCACGCAGGAGGTCTGCGGTTCGATCCCGCATAGCTCCACCA   contig 4 at 1210200
+
+section   2958174       2958249       +0    tRNA                       tRNA,type:Glu,anti_codon:TTC                                             N/A        GTCCCCTTCGTCTAGAGGCCCAGGACACCGCCCTTTCACGGCGGTAACAGGGGTTCGAATCCCCTAGGGGACGCCA   contig 4 at 1210200
+
+section   2965190       2965265       +0    tRNA                       tRNA,type:Thr,anti_codon:TGT                                             N/A        GCCGACTTAGCTCAGTAGGTAGAGCAACTGACTTGTAATCAGTAGGTCACCAGTTCGATTCCGGTAGTCGGCACCA   contig 4 at 1210200
+
+section   2965274       2965358       +0    tRNA                       tRNA,type:Tyr,anti_codon:GTA                                             N/A        GGTGGGGTTCCCGAGCGGCCAAAGGGAGCAGACTGTAAATCTGCCGTCACAGACTTCGAAGGTTCGAATCCTTCCCCCACCACCA   contig 4 at 1210200
+
+section   2965475       2965549       +0    tRNA                       tRNA,type:Gly,anti_codon:TCC                                             N/A        GCGGGCATCGTATAATGGCTATTACCTCAGCCTTCCAAGCTGATGATGCGGGTTCGATTCCCGCTGCCCGCTCCA   contig 4 at 1210200
+
+section   2965556       2965631       +0    tRNA                       tRNA,type:Thr,anti_codon:GGT                                             N/A        GCTGATATAGCTCAGTTGGTAGAGCGCACCCTTGGTAAGGGTGAGGTCGGCAGTTCGAATCTGCCTATCAGCACCA   contig 4 at 1210200
+
+section   2999576       2999651       +0    tRNA                       tRNA,type:Glu,anti_codon:TTC                                             N/A        GTCCCCTTCGTCTAGAGGCCCAGGACACCGCCCTTTCACGGCGGTAACAGGGGTTCGAATCCCCTAGGGGACGCCA   contig 4 at 1210200
+
+section   3152353       3152428       -0    tRNA                       tRNA,type:Phe,anti_codon:GAA                                             N/A        GCCCGGATAGCTCAGTCGGTAGAGCAGGGGATTGAAAATCCCCGTGTCCTTGGTTCGATTCCGAGTCCGGGCACCA   contig 4 at 1210200
+
+section   3182162       3182237       +0    tRNA                       tRNA,type:Gly,anti_codon:GCC                                             N/A        GCGGGAATAGCTCAGTTGGTAGAGCACGACCTTGCCAAGGTCGGGGTCGCGAGTTCGAGTCTCGTTTCCCGCTCCA   contig 4 at 1210200
+
+section   3182274       3182349       +0    tRNA                       tRNA,type:Gly,anti_codon:GCC                                             N/A        GCGGGAATAGCTCAGTTGGTAGAGCACGACCTTGCCAAGGTCGGGGTCGCGAGTTCGAGTCTCGTTTCCCGCTCCA   contig 4 at 1210200
+
+section   3182385       3182460       +0    tRNA                       tRNA,type:Gly,anti_codon:GCC                                             N/A        GCGGGAATAGCTCAGTTGGTAGAGCACGACCTTGCCAAGGTCGGGGTCGCGAGTTCGAGTCTCGTTTCCCGCTCCA   contig 4 at 1210200
+
+section   3286207       3286291       +0    tRNA                       tRNA,type:Leu,anti_codon:CAA                                             N/A        GCCGAAGTGGCGAAATCGGTAGACGCAGTTGATTCAAAATCAACCGTAGAAATACGTGCCGGTTCGAGTCCGGCCTTCGGCACCA   contig 4 at 1210200
+
+section   3395881       3395967       -0    tRNA                       tRNA,type:Leu,anti_codon:CAG                                             N/A        GCGAAGGTGGCGGAATTGGTAGACGCGCTAGCTTCAGGTGTTAGTGTCCTTACGGACGTGGGGGTTCAAGTCCCCCCCCTCGCACCA   contig 4 at 1210200
+
+section   3396002       3396088       -0    tRNA                       tRNA,type:Leu,anti_codon:CAG                                             N/A        GCGAAGGTGGCGGAATTGGTAGACGCGCTAGCTTCAGGTGTTAGTGTTCTTACGGACGTGGGGGTTCAAGTCCCCCCCCTCGCACCA   contig 4 at 1210200
+
+section   3396117       3396203       -0    tRNA                       tRNA,type:Leu,anti_codon:CAG                                             N/A        GCGAAGGTGGCGGAATTGGTAGACGCGCTAGCTTCAGGTGTTAGTGTCCTTACGGACGTGGGGGTTCAAGTCCCCCCCCTCGCACCA   contig 4 at 1210200
+
+
+
+region    1    225381         350971         RNA_location   0              contig 1
+region    2    456625        781919        RNA_location   0              contig 2 at 575000
+region    3    833270        1788859        RNA_location   0              contig 4 at 1210200
+region    4    1900168        2772613        RNA_location   0              contig 4 at 1210200
+region    5    2826943        3396203        RNA_location   0              contig 4 at 1210200

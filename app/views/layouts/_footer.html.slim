@@ -1,0 +1,21 @@
+footer.page-footer
+  .container
+    .row
+      .col.l4.s12
+        h5.white-text Problems? Suggestions?
+        p.grey-text.text-lighten-4
+          | Please contact us using our 
+          a href="http://feedback.wishartlab.com?site=PHASTER" onclick="_gaq.push(['_trackEvent', 'Feedback', 'onClick', 'start feedback']);" feedback form
+          | .
+      .col
+        = link_to image_tag('CIHR.png', size: '110'), 'http://www.cihr-irsc.gc.ca/e/193.html'
+      .col
+        = link_to image_tag('GenomeAlberta.png', size: '94'), 'http://genomealberta.ca'
+      .col
+        = link_to image_tag('u_of_a_logo.svg', size: '320'), 'https://ualberta.ca'
+  .footer-copyright
+    .container
+      i.material-icons copyright
+      |  2015 
+      = link_to 'WishartLab', 'http://www.wishartlab.com'
+      .right PHASTER

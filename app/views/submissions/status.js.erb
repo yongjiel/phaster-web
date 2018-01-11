@@ -1,0 +1,4 @@
+$('#status-text').html("<%= escape_javascript @submission.display_status %>");
+<% if File.exists?(@submission.process_path) %>
+	$('#process-text').html("<%= escape_javascript File.readlines(@submission.process_path)[-1].to_s %>");
+<% end %>

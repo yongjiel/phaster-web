@@ -1,0 +1,257 @@
+.container.banner
+  = image_tag("banner.jpg")
+
+.container.content
+  h5 Reference Input File Format
+  p PHASTER may accept and process either raw nucleotide sequence data in FASTA format or an annotated genome data in GenBank format. If the input file is in FASTA format, locus tags will be assigned sequentially for each identified CDS. Note that this is one FASTA file for the entire genome. We currently do not support annotated cDNAs in FASTA format. Please use the GenBank format for annotated genome. If the input file is in GenBank format, it must provide at least the CDS feature and the "/gene", "/locus_tag" and "/translation" tags inside the CDS features. 
+
+  h6.underline Raw Nucleotide Sequence Data Format
+  p.bold Example #1: This is an example of a generic FASTA file. The entire file contains more than 5M nucleotides, and only the top portion is shown here. The header is not important for PHASTER processing, though it will be displayed as the title of the genome. If no header is provided, an arbitrary header will be created. The input header must be placed on the first line. The DNA sequence must conform to IUPAC coding. A metagneomic file must contain contigs, each with its own header. From this input, only contigs of length >=2000 will be processed. If the metagenomic option is not checked, the first 10 sequences will be processed individually.
+  pre
+    | >gi|16445223|ref|NC_002655.2| Escherichia coli O157:H7 str. EDL933 chromosome, complete genome
+      AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTCTCTGACAGCAGC
+      TTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGGTCACTAAATACTTTAACCAA
+      TATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTACACAACATCCATGAAACGCATTAGCACCACC
+      ATTACCACCACCATCACCACCACCATCACCATTACCATTACCACAGGTAACGGTGCGGGCTGACGCGTAC
+      AGGAAACACAGAAAAAAGCCCGCACCTGACAGTGCGGGCTTTTTTTTCGACCAAAGGTAACGAGGTAACA
+      ACCATGCGAGTGTTGAAGTTCGGCGGTACATCAGTGGCAAATGCAGAACGTTTTCTGCGGGTTGCCGATA
+      TTCTGGAAAGCAATGCCAGGCAGGGGCAGGTGGCCACCGTCCTCTCTGCCCCCGCCAAAATCACCAACCA
+      CCTGGTGGCGATGATTGAAAAAACCATTAGCGGCCAGGATGCTTTACCCAATATCAGCGATGCCGAACGT
+      ATTTTTGCCGAACTTCTGACGGGACTCGCCGCCGCCCAGCCGGGATTCCCGCTGGCGCAATTGAAAACTT
+      TCGTCGACCAGGAATTTGCCCAAATAAAACATGTCCTGCATGGCATTAGTTTGTTAGGGCAGTGCCCGGA
+      TAGCATTAACGCTGCGCTGATTTGCCGTGGCGAGAAAATGTCGATCGCCATTATGGCCGGCGTATTAGAA
+      GCGCGCGGTCACAACGTTACCGTTATCGATCCGGTCGAAAAACTGCTGGCAGTGGGGCATTACCTCGAAT
+      CTACTGTCGATATTGCAGAGTCCACCCGCCGTATTGCGGCAAGTCGTATTCCGGCTGATCACATGGTGCT
+      GATGGCAGGTTTCACCGCCGGTAATGAAAAAGGCGAACTGGTGGTACTTGGACGCAACGGTTCCGACTAC
+      TCCGCGGCGGTGCTGGCTGCCTGTTTACGCGCCGATTGTTGCGAGATTTGGACGGACGTTGACGGGGTAT
+      ATACCTGCGACCCGCGTCAGGTGCCCGATGCGAGGTTGTTGAAATCGATGTCCTACCAGGAAGCGATGGA
+      GCTTTCCTACTTCGGCGCTAAAGTTCTTCACCCCCGCACCATTACCCCCATCGCCCAGTTCCAGATCCCT
+      TGCCTGATTAAAAATACCGGAAATCCTCAAGCTCCAGGTACGCTCATTGGTGCCAGTCGTGATGAAGACG
+      AATTACCGGTCAAGGGCATTTCCAATCTGAATAATATGGCAATGTTCAGCGTTTCCGGCCCGGGGATGAA
+      AGGAATGGTCGGCATGGCGGCGCGCGTCTTTGCTGCAATGTCACGCGCCCGTATTTCCGTGGTGCTGATT
+      ACGCAATCATCTTCCGAATACAGTATCAGTTTCTGCGTTCCGCAAAGCGACTGTGTGCGAGCTGAACGGG
+      CAATGCAGGAAGAGTTCTACCTGGAACTGAAAGAAGGCTTACTGGAGCCGCTGGCGGTGACGGAACGGCT
+      GGCCATTATCTCGGTGGTAGGTGATGGTATGCGCACCTTGCGTGGGATCTCGGCGAAATTCTTTGCCGCG
+      CTGGCCCGCGCCAATATCAACATTGTCGCTATTGCTCAGGGATCTTCTGAACGCTCAATCTCTGTCGTGG
+      TAAATAACGATGATGCGACCACTGGCGTGCGCGTTACTCATCAGATGCTGTTCAATACCGATCAGGTTAT
+
+  p.bold Example #2: Another example in FASTA format. 
+  pre
+    | >unknown genome
+      AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTCTCTGACAGCAGC
+      TTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGGTCACTAAATACTTTAACCAA
+      TATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTACACAACATCCATGAAACGCATTAGCACCACC
+      ATTACCACCACCATCACCACCACCATCACCATTACCATTACCACAGGTAACGGTGCGGGCTGACGCGTAC
+      AGGAAACACAGAAAAAAGCCCGCACCTGACAGTGCGGGCTTTTTTTTCGACCAAAGGTAACGAGGTAACA
+      ACCATGCGAGTGTTGAAGTTCGGCGGTACATCAGTGGCAAATGCAGAACGTTTTCTGCGGGTTGCCGATA
+      TTCTGGAAAGCAATGCCAGGCAGGGGCAGGTGGCCACCGTCCTCTCTGCCCCCGCCAAAATCACCAACCA
+      CCTGGTGGCGATGATTGAAAAAACCATTAGCGGCCAGGATGCTTTACCCAATATCAGCGATGCCGAACGT
+      ATTTTTGCCGAACTTCTGACGGGACTCGCCGCCGCCCAGCCGGGATTCCCGCTGGCGCAATTGAAAACTT
+      TCGTCGACCAGGAATTTGCCCAAATAAAACATGTCCTGCATGGCATTAGTTTGTTAGGGCAGTGCCCGGA
+      TAGCATTAACGCTGCGCTGATTTGCCGTGGCGAGAAAATGTCGATCGCCATTATGGCCGGCGTATTAGAA
+      GCGCGCGGTCACAACGTTACCGTTATCGATCCGGTCGAAAAACTGCTGGCAGTGGGGCATTACCTCGAAT
+      CTACTGTCGATATTGCAGAGTCCACCCGCCGTATTGCGGCAAGTCGTATTCCGGCTGATCACATGGTGCT
+      GATGGCAGGTTTCACCGCCGGTAATGAAAAAGGCGAACTGGTGGTACTTGGACGCAACGGTTCCGACTAC
+      TCCGCGGCGGTGCTGGCTGCCTGTTTACGCGCCGATTGTTGCGAGATTTGGACGGACGTTGACGGGGTAT
+      ATACCTGCGACCCGCGTCAGGTGCCCGATGCGAGGTTGTTGAAATCGATGTCCTACCAGGAAGCGATGGA
+      GCTTTCCTACTTCGGCGCTAAAGTTCTTCACCCCCGCACCATTACCCCCATCGCCCAGTTCCAGATCCCT
+      TGCCTGATTAAAAATACCGGAAATCCTCAAGCTCCAGGTACGCTCATTGGTGCCAGTCGTGATGAAGACG
+      AATTACCGGTCAAGGGCATTTCCAATCTGAATAATATGGCAATGTTCAGCGTTTCCGGCCCGGGGATGAA
+      AGGAATGGTCGGCATGGCGGCGCGCGTCTTTGCTGCAATGTCACGCGCCCGTATTTCCGTGGTGCTGATT
+      ACGCAATCATCTTCCGAATACAGTATCAGTTTCTGCGTTCCGCAAAGCGACTGTGTGCGAGCTGAACGGG
+      CAATGCAGGAAGAGTTCTACCTGGAACTGAAAGAAGGCTTACTGGAGCCGCTGGCGGTGACGGAACGGCT
+      GGCCATTATCTCGGTGGTAGGTGATGGTATGCGCACCTTGCGTGGGATCTCGGCGAAATTCTTTGCCGCG
+      CTGGCCCGCGCCAATATCAACATTGTCGCTATTGCTCAGGGATCTTCTGAACGCTCAATCTCTGTCGTGG
+      TAAATAACGATGATGCGACCACTGGCGTGCGCGTTACTCATCAGATGCTGTTCAATACCGATCAGGTTAT
+
+  h6.underline Annotated Genome Format
+  p.bold Example #1: This is an example of of a generic GenBank file. The entire file contains more than 20k lines, and only the header and first a few CDSs are shown here. Only the "LOCUS" and "DEFINITION" tags in the header are used and they are used for only for naming. All annotated genes must be recorded in the "FEATURES" section and associated with the "gene"and "CDS" sub-tags. The "CDS" portion may or may not have "/translation". " ORIGIN" tag and DNAsequence section must be in the file. 
+
+  pre
+    | LOCUS       NC_002655            5528445 bp    DNA     circular BCT 14-DEC-2010
+      DEFINITION  Escherichia coli O157:H7 str. EDL933 chromosome, complete genome.
+      ACCESSION   NC_002655
+      VERSION     NC_002655.2  GI:16445223
+      DBLINK      Project: 57831
+      KEYWORDS    .
+      SOURCE      Escherichia coli O157:H7 str. EDL933
+        ORGANISM  Escherichia coli O157:H7 str. EDL933
+                  Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales;
+                  Enterobacteriaceae; Escherichia.
+      REFERENCE   1  (bases 1 to 5528445)
+        AUTHORS   Perna,N.T., Plunkett,G. III, Burland,V., Mau,B., Glasner,J.D.,
+                  Rose,D.J., Mayhew,G.F., Evans,P.S., Gregor,J., Kirkpatrick,H.A.,
+                  Posfai,G., Hackett,J., Klink,S., Boutin,A., Shao,Y., Miller,L.,
+                  Grotbeck,E.J., Davis,N.W., Lim,A., Dimalanta,E., Potamousis,K.,
+                  Apodaca,J., Anantharaman,T.S., Lin,J., Yen,G., Schwartz,D.C.,
+                  Welch,R.A. and Blattner,F.R.
+        TITLE     Genome sequence of enterohaemorrhagic Escherichia coli O157:H7
+        JOURNAL   Nature 409 (6819), 529-533 (2001)
+         PUBMED   11206551
+      REFERENCE   2  (bases 1 to 5528445)
+        CONSRTM   NCBI Genome Project
+        TITLE     Direct Submission
+        JOURNAL   Submitted (28-SEP-2001) National Center for Biotechnology
+                  Information, NIH, Bethesda, MD 20894, USA
+      REFERENCE   3  (bases 1 to 5528445)
+        AUTHORS   Perna,N.T., Plunkett,G. III, Burland,V., Mau,B., Glasner,J.D.,
+                  Rose,D.J., Mayhew,G.F., Evans,P.S., Gregor,J., Kirkpatrick,H.A.,
+                  Posfai,G., Hackett,J., Klink,S., Boutin,A., Shao,Y., Miller,L.,
+                  Grotbeck,E.J., Davis,N.W., Lim,A., Dimalanta,E., Potamousis,K.,
+                  Apodaca,J., Anantharaman,T.S., Lin,J., Yen,G., Schwartz,D.C.,
+                  Welch,R.A. and Blattner,F.R.
+        TITLE     Direct Submission
+        JOURNAL   Submitted (22-OCT-2000) Laboratory of Genetics, University of
+                  Wisconsin, 445 Henry Mall, Madison, WI 53706, USA
+      COMMENT     PROVISIONAL REFSEQ: This record has not yet been subject to final
+                  NCBI review. The reference sequence was derived from AE005174.
+                  On Oct 26, 2001 this sequence version replaced gi:15799680.
+                  COMPLETENESS: full length.
+      FEATURES             Location/Qualifiers
+           source          1..5528445
+                           /organism="Escherichia coli O157:H7 str. EDL933"
+                           /mol_type="genomic DNA"
+                           /strain="EDL933"
+                           /serotype="O157:H7"
+                           /db_xref="taxon:155864"
+                           /note="enterohemorrhagic"
+           gene            190..273
+                           /gene="thrL"
+                           /locus_tag="Z0001"
+                           /db_xref="GeneID:962112"
+           CDS             190..273
+                           /gene="thrL"
+                           /locus_tag="Z0001"
+                           /function="leader; Amino acid biosynthesis: Threonine"
+                           /note="involved in threonine biosynthesis; controls the
+                           expression of the thrLABC operon"
+                           /codon_start=1
+                           /transl_table=11
+                           /product="thr operon leader peptide"
+                           /protein_id="NP_285693.1"
+                           /db_xref="GI:15799681"
+                           /db_xref="GeneID:962112"
+                           /translation="MKRISTTITTTITTTITITITTGNGAG"
+           gene            354..2816
+                           /gene="thrA"
+                           /locus_tag="Z0002"
+                           /db_xref="GeneID:962110"
+           CDS             354..2816
+                           /gene="thrA"
+                           /locus_tag="Z0002"
+                           /EC_number="2.7.2.4"
+                           /EC_number="1.1.1.13"
+                           /function="enzyme; Amino acid biosynthesis: Threonine"
+                           /note="multifunctional homotetrameric enzyme that
+                           catalyzes the phosphorylation of aspartate to form
+                           aspartyl-4-phosphate as well as conversion of aspartate
+                           semialdehyde to homoserine; functions in a number of amino
+                           acid biosynthetic pathways"
+                           /codon_start=1
+                           /transl_table=11
+                           /product="bifunctional aspartokinase I/homeserine
+                           dehydrogenase I"
+                           /protein_id="NP_285694.1"
+                           /db_xref="GI:15799682"
+                           /db_xref="GeneID:962110"
+                           /translation="MRVLKFGGTSVANAERFLRVADILESNARQGQVATVLSAPAKIT
+                           NHLVAMIEKTISGQDALPNISDAERIFAELLTGLAAAQPGFPLAQLKTFVDQEFAQIK
+                           HVLHGISLLGQCPDSINAALICRGEKMSIAIMAGVLEARGHNVTVIDPVEKLLAVGHY
+                           LESTVDIAESTRRIAASRIPADHMVLMAGFTAGNEKGELVVLGRNGSDYSAAVLAACL
+                           RADCCEIWTDVDGVYTCDPRQVPDARLLKSMSYQEAMELSYFGAKVLHPRTITPIAQF
+                           QIPCLIKNTGNPQAPGTLIGASRDEDELPVKGISNLNNMAMFSVSGPGMKGMVGMAAR
+                           VFAAMSRARISVVLITQSSSEYSISFCVPQSDCVRAERAMQEEFYLELKEGLLEPLAV
+                           TERLAIISVVGDGMRTLRGISAKFFAALARANINIVAIAQGSSERSISVVVNNDDATT
+                           GVRVTHQMLFNTDQVIEVFVIGVGGVGGALLEQLKRQQSWLKNKHIDLRVCGVANSKA
+                           LLTNVHGLNLENWQEELAQAKEPFNLGRLIRLVKEYHLLNPVIVDCTSSQAVADQYAD
+                           FLREGFHVVTPNKKANTSSMDYYHLLRHAAEKSRRKFLYDTNVGAGLPVIENLQNLLN
+                           AGDELMKFSGILSGSLSYIFGKLDEGMSFSEATTLAREMGYTEPDPRDDLSGMDVARK
+                           LLILARETGRELELADIEIEPVLPAEFNAEGDVAAFMANLSQLDDLFAARVAKARDEG
+                           KVLRYVGNIDEDGVCRVKIAEVDGNDPLFKVKNGENALAFYSHYYQPLPLVLRGYGAG
+                           NDVTAAGVFADLLRTLSWKLGV"
+           gene            2818..3750
+                           /gene="thrB"
+                           /locus_tag="Z0003"
+                           /db_xref="GeneID:962111"
+           CDS             2818..3750
+                           /gene="thrB"
+                           /locus_tag="Z0003"
+                           /EC_number="2.7.1.39"
+                           /function="enzyme; Amino acid biosynthesis: Threonine"
+                           /note="catalyzes the formation of O-phospho-L-homoserine
+                           from L-homoserine in threonine biosynthesis from asparate"
+                           /codon_start=1
+                           /transl_table=11
+                           /product="homoserine kinase"
+                           /protein_id="NP_285695.1"
+                           /db_xref="GI:15799683"
+                           /db_xref="GeneID:962111"
+                           /translation="MVKVYAPASSANMSVGFDVLGAAVTPVDGALLGDVVTVESAETF
+                           SLNNLGRFADKLPSEPRENIVYQCWERFCQELGKQIPVAMTLEKNMPIGSGLGSSACS
+                           VVAALMAMNEHCGKPLNDTRLLALMGELEGRISGSIHYDNVAPCFLGGMQLMIEENDI
+                           ISQQVPGFDEWLWVLAYPGIKVSTAEARAILPAQYRRQDCIAHGRHLAGFIHACYSRQ
+                           PELAAKLMKDVIAEPYRERLLPGFRQARQAVAEIGAVASGISGSGPTLFALCDKPDTA
+                           QRVADWLGKNYLQNQEGFVHICRLDTAGARVLEN"
+           gene            3751..5037
+                           /gene="thrC"
+                           /locus_tag="Z0004"
+                           /db_xref="GeneID:956660"
+           CDS             3751..5037
+                           /gene="thrC"
+                           /locus_tag="Z0004"
+                           /EC_number="4.2.3.1"
+                           /function="enzyme; Amino acid biosynthesis: Threonine"
+                           /note="catalyzes the formation of L-threonine from
+                           O-phospho-L-homoserine"
+                           /codon_start=1
+                           /transl_table=11
+                           /product="threonine synthase"
+                           /protein_id="NP_285696.1"
+                           /db_xref="GI:15799684"
+                           /db_xref="GeneID:956660"
+                           /translation="MKLYNLKDHNEQVSFAQAVTQGLGKNQGLFFPHDLPEFSLTEID
+                           EMLKLDFVTRSAKILSAFIGDEIPQEILEERVRAAFAFPAPVANVESDVGCLELFHGP
+                           TLAFKDFGGRFMAQMLTHIAGDKPVTILTATSGDTGAAVAHAFYGLPNVKVVILYPRG
+                           KISPLQEKLFCTLGGNIETVAIDGDFDACQALVKQAFDDEELKVALGLNSANSINISR
+                           LLAQICYYFEAVAQLPQEARNQLVVSVPSGNFGDLTAGLLAKSLGLPVKRFIAATNVN
+                           DTVPRFLHDGQWSPKATQATLSNAMDVSQPNNWPRVEELFRRKIWQLKELGYAAVDDE
+                           TTQQTMRELKELGYTSEPHAAVAYRALRDQLNPGEYGLFLGTAHPAKFKESVEAILGE
+                           TLDLPKELAERADLPLLSHNLPADFAALRKLMMNHQ"
+           gene            5251..5547
+                           /locus_tag="Z0005"
+                           /db_xref="GeneID:956661"
+           CDS             5251..5547
+                           /locus_tag="Z0005"
+                           /function="orf; Unknown function"
+                           /codon_start=1
+                           /transl_table=11
+                           /product="hypothetical protein"
+                           /protein_id="NP_285697.1"
+                           /db_xref="GI:15799685"
+                           /db_xref="GeneID:956661"
+                           /translation="MKKMQSIVLALSLVLVAPMATQAAEITLVPSVKLQIGDRDNRGY
+                           YWDGGHWRDHGWWKQHYEWRGNRWHPHGPPPPPRHHKKAHHDHHGGHGPGKHHR"
+           gene            complement(5700..6476)
+                           /gene="yaaA"
+                           /locus_tag="Z0006"
+                           /db_xref="GeneID:956662"
+           CDS             complement(5700..6476)
+                           /gene="yaaA"
+                           /locus_tag="Z0006"
+                           /function="orf; Unknown function"
+                           /codon_start=1
+                           /transl_table=11
+                           /product="hypothetical protein"
+                           /protein_id="NP_285698.1"
+                           /db_xref="GI:15799686"
+                           /db_xref="GeneID:956662"
+                           /translation="MLILISPAKTLDYQSPLTTTRYTLPELLDNSQQLIHEARKLTPP
+                           QISTLMRISDKLAGINAARFHDWQPDFTPENARQAILAFKGDVYTGLQAETFSEDDFD
+                           FAQQHLRMLSGLYGVLRPLDLMQPYRLEMGIRLENARGKDLYQFWGDIITNKLNEALA
+                           AQGDNVVINLASDEYFKSVKPKKLNAEIIKPVFLDEKNGKFKIISFYAKKARGLMSRF
+                           IIENRLTKPEQLTGFNSEGYFFDEASSSNGELVFKRYEQR"
+      ORIGIN
+        1 AAAACCCGGGTTT .......
+             60 CCCGGGTTTAAAG .......
+        ......
+      //

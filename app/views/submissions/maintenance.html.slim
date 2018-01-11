@@ -1,0 +1,34 @@
+.container.banner
+  = image_tag("banner.jpg", class: "responsive-img")
+.container.content 
+  p
+    b PHASTER 
+    | (
+    b PHA
+    | ge 
+    b S
+    | earch 
+    b T
+    | ool 
+    b E
+    | nhanced 
+    b R
+    | elease) is a significant upgrade to the popular 
+    a[href="http://phast.wishartlab.com" target="_blank"] 
+      | PHAST 
+    | web server for the rapid identification and annotation of prophage sequences within bacterial genomes and plasmids. While the steps in the phage identification pipeline in PHASTER remain largely the same as in the original PHAST, numerous software improvements and significant hardware enhancements have now made PHASTER faster, more efficient, more visually appealing and much more user friendly. In particular, PHASTER is now 4.3X  faster than PHAST when analyzing a typical bacterial genome. More specifically, software optimizations have made the backend of PHASTER 2.7X faster than PHAST. Likewise, the addition of more than 120 CPUs to the PHASTER compute cluster have greatly reduced processing times. PHASTER can now process a typical bacterial genome in 3 minutes from the raw sequence alone, or in 1.5 minutes when given a pre-annotated GenBank file. A number of other optimizations have been implemented, including automated algorithms to reduce the size and redundancy of PHASTER’s databases, improvements in handling multiple (metagenomic) queries and high user traffic, and the ability to perform automated look-ups against >14,000 previously PHAST/PHASTER annotated bacterial genomes (which can lead to complete phage annotations in seconds as opposed to minutes). PHASTER’s web interface has also been entirely rewritten. A new graphical genome browser has been added, gene/genome visualization tools have been improved, and the graphical interface is now more modern, robust, and user-friendly.
+
+.container.content#citation
+  p
+    b Please cite the following: 
+    blockquote
+      a[href="http://www.ncbi.nlm.nih.gov/pubmed/27141966"] Arndt, D., Grant, J., Marcu, A., Sajed, T., Pon, A., Liang, Y., Wishart, D.S. (2016) PHASTER: a better, faster version of the PHAST phage search tool. Nucleic Acids Res., 2016 May 3.
+      br
+      br
+      a[href="http://www.ncbi.nlm.nih.gov/pubmed/21672955"]Zhou,Y., Liang,Y., Lynch,K.H., Dennis,J.J. and Wishart,D.S. (2011) PHAST: a fast phage search tool. Nucleic Acids Res., 39, W347–W352.
+
+.container.content
+
+  p
+    h5 Maintenance Notice:
+    b PHASTER is currently unavailable for a short maintenance period. Please check back later to perform new searches.

@@ -1,0 +1,142 @@
+Running phage script:
+perl /apps/phaster/phaster-app/scripts/phaster.pl -c ZZ_eda889a4b3
+
+Job start running ,time=Thu Apr 14 20:35:28 UTC 2016
+Job ZZ_eda889a4b3 is running. /apps/phaster/phaster-app/JOBS/running1.txt is generated!
+XXXXX running FragGeneScan XXXXXX
+Start FragGeneScan at 4 sec
+XXXXX parallel running FragGeneScan XXXXXX
+/apps/phaster/phaster-app/scripts/call_fraggenescan_parallel.sh  /home/prion/phaster-app/JOBS/ZZ_eda889a4b3/tmp/fraggenescan  ZZ_eda889a4b3
+Your job-array 383499.1-4:1 ("single_fraggenescan.pl") has been submitted
+Job 383499.3 exited with exit code 0.
+Job 383499.1 exited with exit code 0.
+Job 383499.2 exited with exit code 0.
+Job 383499.4 exited with exit code 0.
+run time= 73 seconds
+Program exit
+XXXXX running FragGeneScan finished XXXXXX
+
+FragGeneScan run time = 81 sec
+ZZ_eda889a4b3.predict is created !
+perl /apps/phaster/phaster-app/scripts/change_to_ptt_format.pl ZZ_eda889a4b3.fna ZZ_eda889a4b3.predict  ZZ_eda889a4b3.ptt
+ZZ_eda889a4b3.ptt is created !
+Generating ppt file took 0 sec
+ZZ_eda889a4b3.faa is created !
+Generating faa file took 12 sec
+Elapsed before tRNA scanning = 97 sec
+
+XXXXX running phage finder: phage_finder.sh  ZZ_eda889a4b3 XXXXX
+/apps/phaster/phaster-app/JOBS/ZZ_eda889a4b3
+/apps/phaster/phaster-app/JOBS/ZZ_eda889a4b3
+find tRNA sequences ...
+
+tRNAscan-SE v.1.23 (April 2002) - scan sequences for transfer RNAs
+
+  Please cite: 
+	Lowe, T.M. & Eddy, S.R. (1997) "tRNAscan-SE: A program for
+	improved detection of transfer RNA genes in genomic sequence"
+	Nucl. Acids Res. 25: 955-964.
+
+  This program uses a modified, optimized version of tRNAscan v1.3
+  (Fichant & Burks, J. Mol. Biol. 1991, 220: 659-671),
+  a new implementation of a multistep weight matrix algorithm
+  for identification of eukaryotic tRNA promoter regions
+  (Pavesi et al., Nucl. Acids Res. 1994, 22: 1247-1256),
+  as well as the RNA covariance analysis package Cove v.2.4.2
+  (Eddy & Durbin, Nucl. Acids Res. 1994, 22: 2079-2088).
+
+------------------------------------------------------------
+Sequence file(s) to search:  ZZ_eda889a4b3.fna
+Search Mode:                 Bacterial
+Results written to:          tRNAscan.out
+Output format:               Tabular
+Searching with:              tRNAscan + EufindtRNA -> Cove
+Covariance model:            TRNA2-bact.cm
+tRNAscan parameters:         Strict
+EufindtRNA parameters:       Relaxed (Int Cutoff= -36)
+------------------------------------------------------------
+
+tRNAscan-SE took 43 s
+find tmRNA sequences ...
+aragorn took 7 s
+/apps/phaster/phaster-app/scripts/extract_RNA.pl ZZ_eda889a4b3  extract_RNA_result.txt.tmp
+/apps/phaster/phaster-app/scripts/make_RNA_png_input.pl  extract_RNA_result.txt.tmp  png_input_RNA
+phage_finder.sh and tRNA_tmRNA() done at 190 sec
+phage_finder.sh and tRNA_tmRNA() took 93 sec
+Thu Apr 14 20:37:05 UTC 2016
+
+/apps/phaster/phaster-app/scripts/phage_finder.sh  ZZ_eda889a4b3  /usr/scratch/phaster/DB/prophage_virus.db 0 104 1
+/apps/phaster/phaster-app/JOBS/ZZ_eda889a4b3/ncbi.out file does not exist. Performing BLAST search.
+Parallel BLASTing ZZ_eda889a4b3.faa against the Phage virus DB ...
+copy pep file to cluster took 2 sec
+Running these commands on back-end cluster:
+   cd /home/prion/phaster-app/JOBS/ZZ_eda889a4b3/tmp/blast_v
+   perl /home/prion/phaster-app/scripts/call_blast_parallel.pl /home/prion/phaster-app/JOBS/ZZ_eda889a4b3/tmp/blast_v/ZZ_eda889a4b3.faa /usr/scratch/phaster/DB/prophage_virus.db 0 104 1
+transferring ncbi.out...
+copy BLAST results from cluster took 2 sec
+Parallel BLASTing ZZ_eda889a4b3.faa against the Phage virus DB took 91 seconds
+XXXXX finish running phage finder  XXXXX
+
+phage_finder and checks done at 190 sec
+NNNNNN NC=NC_000000
+scan.pl started at 190 sec
+perl /apps/phaster/phaster-app/scripts/scan.pl -n ../ZZ_eda889a4b3.fna  -a ../ZZ_eda889a4b3.faa  -t  ../tRNAscan.out -m ../tmRNA_aragorn.out  -b ../ncbi.out  -p ../ZZ_eda889a4b3.ptt  -use 5 -c ../ZZ_eda889a4b3_contig_positions.txt
+NC_000000_phmedio.txt is created !
+scan.pl took 6 sec
+scan.pl done at 196 sec
+perl /apps/phaster/phaster-app/scripts/annotation.pl NC_000000 ZZ_eda889a4b3  /apps/phaster/phaster-app/DB/prophage_virus_header_lines.db  /apps/phaster/phaster-app/DB/bacteria_all_select_header_lines.db ../ncbi.out.non_hit_pro_region NC_000000_phmedio.txt -c
+
+Call annotation.pl <NC number>  <dir-name>  <virus_db> <bac_db> <non_hit_blast_output_file> <scan_output_file> [-s|-a|-g]
+read in /apps/phaster/phaster-app/DB/prophage_virus_header_lines.db, time 0 seconds
+read in /apps/phaster/phaster-app/DB/bacteria_all_select_header_lines.db , time 6 seconds
+Writing NC_000000_phmedio.txt.tmp
+  Change NC_000000_phmedio.txt 
+Finish annotation.pl in 6 seconds
+
+annotation.pl plus waiting took 6 sec
+annotation.pl done at 202 sec
+perl /apps/phaster/phaster-app/scripts/extract_protein.pl ZZ_eda889a4b3  NC_000000_phmedio.txt  extract_result.txt
+extract_result.txt is created !
+extract_protein.pl took 0 sec
+perl /apps/phaster/phaster-app/scripts/get_true_region.pl NC_000000_phmedio.txt  extract_result.txt  true_defective_prophage.txt
+true_defective_prophage.txt is created !
+get_true_region.pl took 1 sec
+perl /apps/phaster/phaster-app/scripts/make_png.pl extract_result.txt  true_defective_prophage.txt  png_input
+java -cp bin Plotter  /apps/phaster/phaster-app/JOBS/ZZ_eda889a4b3/NC_000000_dir/png_input /apps/phaster/phaster-app/JOBS/ZZ_eda889a4b3/NC_000000_dir/image  
+Done : java -cp bin Plotter  /apps/phaster/phaster-app/JOBS/ZZ_eda889a4b3/NC_000000_dir/png_input /apps/phaster/phaster-app/JOBS/ZZ_eda889a4b3/NC_000000_dir/image  
+image.png is created !
+make_png.pl took 2 sec
+/apps/phaster/phaster-app/JOBS/ZZ_eda889a4b3/ZZ_eda889a4b3.done generated
+empty=0
+Program finished, taking 205 seconds!
+rm -rf /apps/phaster/phaster-app/JOBS/running1.txt
+Program exit!
+
+
+
+TIMING MESSAGES
+
+Start FragGeneScan at 4 sec
+run time= 73 seconds
+FragGeneScan run time = 81 sec
+Generating ppt file took 0 sec
+Generating faa file took 12 sec
+Elapsed before tRNA scanning = 97 sec
+phage_finder.sh and tRNA_tmRNA() done at 190 sec
+phage_finder.sh and tRNA_tmRNA() took 93 sec
+copy pep file to cluster took 2 sec
+copy BLAST results from cluster took 2 sec
+Parallel BLASTing ZZ_eda889a4b3.faa against the Phage virus DB took 91 seconds
+phage_finder and checks done at 190 sec
+scan.pl started at 190 sec
+scan.pl took 6 sec
+scan.pl done at 196 sec
+read in /apps/phaster/phaster-app/DB/prophage_virus_header_lines.db, time 0 seconds
+read in /apps/phaster/phaster-app/DB/bacteria_all_select_header_lines.db , time 6 seconds
+Finish annotation.pl in 6 seconds
+annotation.pl plus waiting took 6 sec
+annotation.pl done at 202 sec
+extract_protein.pl took 0 sec
+get_true_region.pl took 1 sec
+make_png.pl took 2 sec
+Program finished, taking 205 seconds!

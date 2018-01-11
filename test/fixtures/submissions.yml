@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  secret_id: MyString
+  accession_id: MyString
+  fasta: MyText
+
+two:
+  secret_id: MyString
+  accession_id: MyString
+  fasta: MyText

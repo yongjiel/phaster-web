@@ -1,0 +1,3175 @@
+.container.banner
+  = image_tag("banner.jpg")
+
+.container.content
+  h5 Reference
+  p If you use the results of PHASTER, please cite the following:
+  blockquote
+    a[href=""] Arndt, D., Grant, J., Marcu, A., Sajed, T., Pon, A., Liang, Y., Wishart, D.S. (2016) "PHASTER: a better, faster version of the PHAST phage search tool", Nucleic Acids Research (submitted).
+
+.container.content
+  h5 Reference Tables and Figures
+  
+  h6 Quick Links
+  a href="#table1" Table 1: PHASTER’s performance upgrades
+  br
+  a href="#table2" Table 2: Feature comparison between PHAST and PHASTER
+  br
+  a href="#figure1" Figure 1: Contig length and sensitivity
+  br
+  a href="#table3" Table 3: PHASTER evaluation (summary)
+  br
+  a href="#table4" Table 4: PHASTER evaluation on GenBank annotated genomes
+  br
+  a href="#table5" Table 5: PHASTER evaluation on unannotated genomes
+  
+  br
+  br
+  
+  a name="table1"
+  p.caption.table-1 Table 1: Details of PHASTER’s performance upgrades, and a comparison of their impact on runtimes for a 5.5 Mbp test genome (Escherichia coli O157:H7,GenBank accession NC_002655)
+
+  / p.center-align.caption
+  /   | Sn = reference prophages detected / total reference prophages
+  /   br
+  /   | PPV = reference prophages detected / (reference prophages detected + detected but not referenced prophages)
+
+  table.bordered
+    thead
+      tr
+        th[width="40%"]
+          | Cumulative set of performance enhancements
+        th[width="15%"]
+          | BLAST vs. viral DB runtime (s)
+        th[width="15%"]
+          | BLAST vs. bacterial DB runtime (s)
+        th[width="15%"]
+          | Total runtime on GenBank annotated genome (s)
+        th[width="15%"]
+          | Total runtime on unannotated genome (s)
+    tbody
+      tr
+        td
+          | PHAST (baseline) current DBs, no other upgrades
+        td
+          | 191
+        td
+          | 576
+        td
+          | 270
+        td
+          | 899
+      tr
+        td
+          | PHASTER (upgrade 1) - filter bacterial DB
+        td
+          | 191
+        td
+          | 309
+        td
+          | 270
+        td
+          | 632
+      tr
+        td
+          | PHASTER (upgrade 2) - cluster upgrade
+        td
+          | 88
+        td
+          | 166
+        td
+          | 167
+        td
+          | 386
+      tr
+        td
+          | PHASTER (upgrade 3) - BLAST+
+        td
+          | 77
+        td
+          | 132
+        td
+          | 156
+        td
+          | 341
+      tr
+        td
+          | PHASTER (upgrade 4) - partition query sequences evenly
+        td
+          | 47
+        td
+          | 103
+        td
+          | 126
+        td
+          | 282
+      tr
+        td
+          | PHASTER (upgrade 5) - bacterial DB, optimize parameters
+        td
+          | 47
+        td
+          | 48
+        td
+          | 126
+        td
+          | 227
+      tr
+        td
+          | PHASTER (upgrade 6) - faster front-end server
+        td
+          | 47
+        td
+          | 48
+        td
+          | 100
+        td
+          | 205
+  br
+
+
+  a name="table2"
+  p.caption.table-1 Table 2: A feature comparison between PHAST and PHASTER
+
+  table.bordered
+    thead
+      tr
+        th
+          | Feature
+        th
+          | PHAST (as of Jan 2011)
+        th
+          | PHASTER
+      tr
+        td
+          | Viral sequence database
+        td 
+          | ~45,000 sequences
+        td
+          | ~187,000 sequences
+      tr
+        td
+          | Bacterial sequence database
+        td 
+          | ~4 million sequences
+        td
+          | ~9 million sequences, streamlined through CD-HIT filtering
+      tr
+        td
+          | Computing cluster
+        td 
+          | 32 CPU cores
+        td
+          | 112 CPU cores
+      tr
+        td
+          | BLAST
+        td 
+          | Legacy version 2.2.16
+        td
+          | BLAST+ version 2.3.0+
+      tr
+        td
+          | Cluster use optimization
+        td 
+          | Rudimentary
+        td
+          | Smart partitioning of query sequences and target bacterial DB; optimized execution parameters
+      tr
+        td
+          | Front-end server
+        td 
+          | Shared, single CPU
+        td
+          | 50% faster, dedicated
+      tr
+        td
+          | Front-end website
+        td 
+          | Perl and CGI
+        td
+          | Ruby on Rails
+      tr
+        td
+          | Genome viewer
+        td 
+          | Adobe Flash
+        td
+          | JavaScript, AngularPlasmid and D3
+      tr
+        td
+          | Queuing system
+        td 
+          | Flat file
+        td
+          | Uses Sidekiq for threading submissions
+      tr
+        td
+          | Recall previous user submissions
+        td 
+          | Bookmark page
+        td
+          | “My Searches” feature or bookmark
+      tr
+        td
+          | Pre-computed genome results for quick query searching
+        td 
+          | 0
+        td
+          | >14,000
+      tr
+        td
+          | Retrieve previously annotated genome results
+        td 
+          | GenBank accession or GI number only
+        td
+          | GenBank accession, GI number, or full sequence
+      tr
+        td
+          | Metagenomic data handling
+        td 
+          | NA
+        td
+          | Supported
+            br
+  br
+
+
+  a name="figure1"
+  p.caption.figure-1 Figure 1: Identified phage for varying contig lengths 
+  =image_tag("contig_percentages.png")
+
+  br
+  br
+
+  a name="table3"
+  p.caption.table-3 Table 3: Comparison of accuracy between the PHAST (2011) and PHASTER (2016). Evaluation was performed against manual prophage annotations in 54 bacterial genomes from Casjens, S. (2003) Molecular Microbiology, 49, 277-300. Because these manual annotations are a number of years old, predicted prophages were manually inspected, and it was determined that PHASTER finds good evidence that several of these are in fact true prophages (these are marked below in Tables 4 and 5). Once the evaluation standard was adjusted to count these prophages as true positives, adjusted sensitivity and PPV values were calculated (last two rows).
+
+
+  table.bordered
+    thead
+      tr
+        th
+          
+        th colspan="2"
+          | PHAST (2011)
+        th colspan="2"
+          | PHASTER (2016)
+      tr
+        td
+          | Input data
+        td
+          | GenBank annotated genome
+        td
+          | Sequence only
+
+        td
+          | GenBank annotated genome
+
+        td 
+          | Sequence only
+      tr
+        td
+          | Sensitivity
+        td
+          | 85.4%
+        td 
+          | 79.4%
+        td
+          | 86.9%
+        td
+          | 85.0%
+      tr
+        td
+          | Positive predictive value (PPV)
+        td
+          | 94.2%
+        td 
+          | 86.5%
+        td
+          | 91.0%
+        td
+          | 87.3%
+
+      tr
+        td
+          | Prophages annotated in evaluation set
+        td
+          | 267
+        td 
+          | 267
+        td
+          | 267
+        td
+          | 267
+
+      tr
+        td
+          | Prophages matched
+        td
+          | 228
+        td 
+          | 212
+        td
+          | 232
+        td
+          | 227
+
+      tr
+        td
+          | Predicted prophages not present in evaluation set
+        td
+          | 14
+        td 
+          | 33
+        td
+          | 23
+        td
+          | 33
+
+      tr
+        td
+          | Predicted prophages not in the evaluation set with evidence suggestive of being true prophages
+        td
+          | N/A
+        td 
+          | N/A
+        td
+          | 12
+        td
+          | 11
+
+      tr
+        td
+          | Adjusted sensitivity
+        td
+          | N/A
+        td 
+          | N/A
+        td
+          | 87.5%
+        td
+          | 85.6%
+
+      tr
+        td
+          | Adjusted PPV
+        td
+          | N/A
+        td 
+          | N/A
+        td
+          | 95.7%
+        td
+          | 91.5%
+  br
+
+
+  a name="table4"
+  p.caption Table 4: Detailed evaluation results for PHAST (2011) and PHASTER (2016) run on GenBank annotated genomes. Evaluation was made against manual prophage annotations in 54 bacterial genomes from Casjens, S. (2003) Molecular microbiology, 49, 277-300. Prophages predicted by PHASTER that were absent in the evaluation set were manually inspected, and several (marked below with **) were deemed to have good evidence of being true prophages rather than being false positives.
+
+  pre
+    | ==================================================================
+    br
+    | NCBI id:    NC_000962
+    br
+    | Organism:   Mycobacterium tuberculosis H37Rv
+    br
+    | Gnome size: 4411532 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2970551-2981576  2970065-2983874  2970063-2983874
+    br
+    | 1780643-1788505  1766989-1788505  1766987-1788505
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_000913
+    br
+    | Organism:   Escherichia coli K12
+    br
+    | Gnome size: 4639675 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    |   262552-296320    262124-296432    262898-297206
+    br
+    | 2464567-2475651  2464378-2475651  2465301-2477629
+    br
+    | 2754181-2775804  2753821-2780748  2754896-2777782
+    br
+    |   564038-584856    563980-585282    564755-586057
+    br
+    | 1410024-1432281  1404587-1432838  1395952-1435051
+    br
+    | 1196090-1210402  1191881-1218961  1196867-1216671
+    br
+    | 1631063-1650732  1631063-1662537  1619557-1656744
+    br
+    | 2556793-2563354               FN               FN
+    br
+    | 2064329-2076158               FN               FN
+    br
+    | FALSE POSITIVES  4505466-4540762  3716547-3722049
+    br
+    |                                   4491197-4548442 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003112
+    br
+    | Organism:   Neisseria meningitidis MC58
+    br
+    | Gnome size: 2272360 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1001560-1005455   998362-1007364               FN
+    br
+    | 1099910-1133980  1101164-1133760  1101164-1133760
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002947
+    br
+    | Organism:   Pseudomonas putida KT2440
+    br
+    | Gnome size: 6181863 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 4372649-4427414  4375285-4412410  4375283-4415646
+    br
+    |                  4405478-4435736                 
+    br
+    | 2586633-2625819  2586633-2625819               FN
+    br
+    | 3418567-3447235  3411568-3447570  3411566-3447568
+    br
+    | 1738082-1774805  1748226-1781071  1734863-1780106
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003902
+    br
+    | Organism:   Xanthomonas campestris pv. campestris str. ATCC 33913
+    br
+    | Gnome size: 5076188 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2435595-2441676  2423307-2465702  2423305-2465700
+    br
+    | 3523234-3560198  3517532-3560198  3523035-3562020
+    br
+    | 2441850-2447920  2423307-2465702  2423305-2465700
+    br
+    | FALSE POSITIVES  1855984-1886789  4258232-4274508
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002935
+    br
+    | Organism:   Corynebacterium diphtheriae NCTC 13129
+    br
+    | Gnome size: 2488635 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   776521-790960               FN               FN
+    br
+    | 2216802-2297805               FN               FN
+    br
+    | 1866723-1880855               FN  1863158-1880855
+    br
+    |   154365-190992    151932-190743    151930-190741
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003198
+    br
+    | Organism:   Salmonella enterica subsp. enterica serovar Typhi str. CT18
+    br
+    | Gnome size: 4809037 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1888674-1933558  1879228-1939495  1879226-1937407
+    br
+    | 3515470-3548975  3511575-3552602  3504242-3555052
+    br
+    | 1538899-1572919  1538899-1572919  1538899-1572919
+    br
+    | 4473973-4507270  4462430-4507604  4462428-4507602
+    br
+    | 1008747-1052755  1008700-1053062  1008698-1053060
+    br
+    | 4683853-4694545  4683672-4695076  4683670-4695074
+    br
+    | 2760475-2768771               FN               FN
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004337
+    br
+    | Organism:   Shigella flexneri 2a str. 301
+    br
+    | Gnome size: 4607203 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2227585-2235565               FN  2229979-2240203
+    br
+    |   238841-251370    235830-252705    235830-252705
+    br
+    |   899706-918668    898668-918668    898668-918668
+    br
+    |   311291-328079    306585-340777    306583-340775
+    br
+    | 2683559-2698944  2680811-2695524  2684932-2695524
+    br
+    | 1919854-1942697  1915150-1945164  1915150-1946940
+    br
+    | 2049694-2066397  2032769-2079336  2030315-2079334
+    br
+    | 1175319-1188408  1174912-1189402  1174910-1189400
+    br
+    | 1395280-1421884  1387236-1426965  1387236-1407895
+    br
+    |                                   1409936-1425018
+    br
+    |   696659-747734    696659-752084    696659-752084
+    br
+    | FALSE POSITIVES                   1081687-1103027
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002967
+    br
+    | Organism:   Treponema denticola ATCC 35405
+    br
+    | Gnome size: 2843201 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1169950-1202411  1164701-1202621  1175279-1214754
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002737
+    br
+    | Organism:   Streptococcus pyogenes M1 GAS
+    br
+    | Gnome size: 1852441 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   527569-571887    529593-570496    526682-570494
+    br
+    | 1773458-1782822  1773439-1786764  1773437-1786762
+    br
+    |   778642-820599    777508-820962    775802-821679
+    br
+    | 1192854-1222549  1182570-1222912  1182568-1222912
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003030
+    br
+    | Organism:   Clostridium acetobutylicum ATCC 824
+    br
+    | Gnome size: 3940880 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2024020-2074254  2017739-2083829  2013351-2078513
+    br
+    | 1277643-1346789               FN  1274369-1283638
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003116
+    br
+    | Organism:   Neisseria meningitidis Z2491
+    br
+    | Gnome size: 2184406 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1768546-1807515  1770842-1807515  1768546-1807515
+    br
+    | 1131796-1138899  1129591-1138899  1129591-1138899
+    br
+    | 1207416-1236260  1214074-1225850               FN
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004431
+    br
+    | Organism:   Escherichia coli CFT073
+    br
+    | Gnome size: 5231428 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 1169792-1228729               FN               FN
+    br
+    |   909332-942273    907025-945470    908948-945468
+    br
+    | 3019963-3065315  3007214-3065315  3007212-3065718
+    br
+    | 4923133-4929628               FN               FN
+    br
+    | 1397370-1452231  1394721-1452257  1394721-1452255
+    br
+    | 1378215-1388952  1377875-1389094  1377873-1389092
+    br
+    | 1327053-1372820  1327916-1375035  1327914-1375035
+    br
+    | FALSE POSITIVES  4955800-4971387    236993-283987 **
+    br
+    |                                   4961854-4967870 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004116
+    br
+    | Organism:   Streptococcus agalactiae 2603V/R
+    br
+    | Gnome size: 2160267 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1833318-1867117  1816885-1876443  1816883-1876441
+    br
+    |   558254-599207    554829-600594    554829-601907
+    br
+    | FALSE POSITIVES  1944858-1978401                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002745
+    br
+    | Organism:   Staphylococcus aureus subsp. aureus N315
+    br
+    | Gnome size: 2814816 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 2005924-2049520  2005721-2052732  2005721-2052732
+    br
+    | FALSE POSITIVES  2054348-2076507  2054346-2074317 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002662
+    br
+    | Organism:   Lactococcus lactis subsp. lactis Il1403
+    br
+    | Gnome size: 2365589 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1036642-1071558  1033815-1079175  1033815-1079173
+    br
+    |   502723-513742    502338-520485    502338-520485
+    br
+    |     35516-49727      28461-56371      28459-56369
+    br
+    | 1414112-1456949  1414112-1457046  1414112-1457044
+    br
+    | 2013685-2025635  1997701-2028023  1997699-2028023
+    br
+    |   447236-483244    443651-484066    447143-484064
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002516
+    br
+    | Organism:   Pseudomonas aeruginosa PAO1
+    br
+    | Gnome size: 6264404 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    |   689236-702529    673191-703058    670089-703058
+    br
+    |   672777-689221    673191-703058    670089-703058
+    br
+    | FALSE POSITIVES    780997-796776    780995-796776 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_005085
+    br
+    | Organism:   Chromobacterium violaceum ATCC 12472
+    br
+    | Gnome size: 4751080 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2303969-2334742  2300705-2339162  2300705-2339162
+    br
+    |   353384-372826    353384-374417    353384-378213
+    br
+    |   428568-450397    427983-450397    427983-450397
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_000964
+    br
+    | Organism:   Bacillus subtilis subsp. subtilis str. 168
+    br
+    | Gnome size: 4214630 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2151284-2285604  2144356-2286435  2146013-2288062
+    br
+    | 2055488-2064044  2060009-2065377  2055868-2065377
+    br
+    | 2666111-2700582  2653064-2701100  2653062-2701098
+    br
+    | 1320640-1347494  1314453-1348182  1314453-1348182
+    br
+    | FALSE POSITIVES  1899589-1919395                 
+    br
+    |                    724913-774196                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_005362
+    br
+    | Organism:   Lactobacillus johnsonii NCC 533
+    br
+    | Gnome size: 1992676 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   327894-367791    327849-370611    327847-374448
+    br
+    | 1292553-1330377  1292072-1331686  1287749-1331686
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003485
+    br
+    | Organism:   Streptococcus pyogenes MGAS8232
+    br
+    | Gnome size: 1895017 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   293882-332714    272736-351522    277254-332714
+    br
+    | 1451844-1493373  1443375-1493373  1443373-1493373
+    br
+    | 1041280-1087739  1041280-1088722  1038487-1095615
+    br
+    |   578093-618765    578055-619104    575144-619102
+    br
+    | 1206360-1241416  1200228-1241416  1200226-1241416
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003366
+    br
+    | Organism:   Clostridium perfringens str. 13
+    br
+    | Gnome size: 3031430 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1298199-1327800  1310119-1335464  1310119-1327800
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003923
+    br
+    | Organism:   Staphylococcus aureus subsp. aureus MW2
+    br
+    | Gnome size: 2820462 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 2046605-2088749  2036090-2091958  2036088-2091958
+    br
+    | 1529381-1573005  1522195-1584851  1522193-1584849
+    br
+    | FALSE POSITIVES    836064-854951    826277-860029 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_005126
+    br
+    | Organism:   Photorhabdus luminescens subsp. laumondii TTO1
+    br
+    | Gnome size: 5688987 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 2552735-2573940               FN               FN
+    br
+    | 4190163-4242791               FN               FN
+    br
+    | 4340686-4389134  4340329-4385481  4324782-4373679
+    br
+    | 5175988-5190589               FN               FN
+    br
+    | 2088101-2101272               FN               FN
+    br
+    | 2800483-2848507               FN               FN
+    br
+    | 3774756-3892173               FN               FN
+    br
+    | 5201181-5228815               FN               FN
+    br
+    | 4006891-4056690  4007651-4076282  4005528-4094743
+    br
+    | 1267570-1617919               FN               FN
+    br
+    | 2331853-2466741  2354923-2387906               FN
+    br
+    | 2955621-2991661               FN               FN
+    br
+    | 3409531-3537385  3405940-3468149  3397151-3480006
+    br
+    |                  3512834-3535879  3517195-3537385
+    br
+    |     10251-29999      10251-32806      10251-32806
+    br
+    |   132320-180394               FN               FN
+    br
+    | FALSE POSITIVES  4080520-4099672    490798-502770
+    br
+    |                                   1785333-1795520
+    br
+    |                                   1983763-1993171 **
+    br
+    |                                   5091596-5102153
+    br
+    |                                   5559641-5566514 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004631
+    br
+    | Organism:   Salmonella enterica subsp. enterica serovar Typhi Ty2
+    br
+    | Gnome size: 4791961 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 4458029-4490856  4446023-4491190  4446021-4491188
+    br
+    | 4671630-4678034  4666561-4677964  4666559-4677962
+    br
+    | 1928058-1972330  1928058-1972330  1928058-1972330
+    br
+    | 2735202-2754628  2735079-2771942  2734604-2759926
+    br
+    | 1314607-1441766  1408218-1441766  1408218-1441766
+    br
+    | 3501128-3538076  3497233-3538262  3489900-3540712
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003143
+    br
+    | Organism:   Yersinia pestis CO92
+    br
+    | Gnome size: 4653728 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   964013-971311               FN               FN
+    br
+    | 1392489-1416524               FN               FN
+    br
+    | 1233128-1243405  1219764-1253174  1219762-1253172
+    br
+    | 2554373-2563203               FN  2555162-2562034
+    br
+    | 2363019-2413098  2364324-2376936  2364324-2404493
+    br
+    |                  2379304-2404493                 
+    br
+    | 2115626-2122603               FN  2115553-2124318
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004668
+    br
+    | Organism:   Enterococcus faecalis V583
+    br
+    | Gnome size: 3218031 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1398097-1443843  1398053-1447105  1398051-1447105
+    br
+    | 2817287-2829554  2815980-2832090  2815978-2832090
+    br
+    | 2004910-2048146  2002278-2020730  2001579-2020730
+    br
+    |                  2021650-2049919  2023234-2049919
+    br
+    | 1245337-1259965  1242193-1259965  1245337-1259965
+    br
+    | 2700666-2736808  2697272-2736808  2697272-2736808
+    br
+    | 1923000-1962485  1933729-1948114  1933729-1948114
+    br
+    |   289354-326185    288968-332966    288966-332964
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003295
+    br
+    | Organism:   Ralstonia solanacearum GMI1000
+    br
+    | Gnome size: 3716413 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2084602-2124346  2080692-2125142  2084443-2125140
+    br
+    | 1003644-1018473               FN               FN
+    br
+    | 1781995-1823953  1781782-1824226  1797957-1821238
+    br
+    | 2049204-2056036               FN               FN
+    br
+    | 3486521-3505550               FN  3479557-3495896
+    br
+    | 2684129-2695788               FN               FN
+    br
+    | 1591303-1598986               FN               FN
+    br
+    |   879632-939437    879632-899438    883334-899438
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003155
+    br
+    | Organism:   Streptomyces avermitilis MA-4680
+    br
+    | Gnome size: 9025608 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 6670511-6721444  6673473-6695725  6678303-6693625
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004347
+    br
+    | Organism:   Shewanella oneidensis MR-1
+    br
+    | Gnome size: 4969803 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2788307-2822836  2788307-2822836  2788307-2822836
+    br
+    |   669361-703908    668166-708836    655830-720989
+    br
+    | 3075409-3126249  3069342-3114478  3069340-3114921
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004741
+    br
+    | Organism:   Shigella flexneri 2a str. 2457T
+    br
+    | Gnome size: 4599354 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   238511-254700    234959-256034    234959-256034
+    br
+    | 1177837-1191596  1177792-1192294  1177790-1192292
+    br
+    | 1614219-1620622  1612576-1617991  1612576-1617991
+    br
+    |                  1619869-1623357  1619869-1623357
+    br
+    | 2021895-2044342  2013831-2041709  2003138-2057970
+    br
+    |   313843-327223    309137-339911    309135-339909
+    br
+    | 1912634-1921793  1872285-1932001  1872283-1931999
+    br
+    |   710297-746123    692891-746123    692891-743892
+    br
+    | 1901037-1921793  1872285-1932001  1872283-1931999
+    br
+    |   897790-930670    893482-915474    893482-915474
+    br
+    | 2678519-2687517  2674398-2688968  2674398-2688968
+    br
+    | 1100131-1105919  1084467-1105919  1084465-1105919
+    br
+    |   692891-709118    692891-746123    692891-743892
+    br
+    | FALSE POSITIVES                   2201408-2208976
+    br
+    |                                   2211660-2219625
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004088
+    br
+    | Organism:   Yersinia pestis KIM
+    br
+    | Gnome size: 4600755 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2693615-2700576  2691227-2700576  2691227-2700576
+    br
+    | 3389410-3399754  3389138-3410723  3381641-3415033
+    br
+    | 3595228-3601343               FN               FN
+    br
+    | 2417129-2456467  2415700-2456467  2415700-2456467
+    br
+    | 3237524-3255252  3237524-3247743  3237524-3247743
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004556
+    br
+    | Organism:   Xylella fastidiosa Temecula1
+    br
+    | Gnome size: 2519802 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2005731-2020421  2005731-2022616  2005731-2022616
+    br
+    | 1847752-1855582               FN               FN
+    br
+    | 1161143-1217907  1161143-1180387  1161143-1180387
+    br
+    |                  1189753-1221390  1189751-1221388
+    br
+    | 1117952-1142627  1117952-1143372  1128417-1143372
+    br
+    |   454017-467611    450825-469025    450825-469025
+    br
+    | 1288547-1392763  1288547-1331541  1288023-1331541
+    br
+    |                  1361920-1394823  1361918-1394821
+    br
+    | 1550281-1556188               FN               FN
+    br
+    | FALSE POSITIVES                     941347-956040
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003997
+    br
+    | Organism:   Bacillus anthracis str. Ames
+    br
+    | Gnome size: 5227293 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   447387-484339    447158-484420    447156-484418
+    br
+    | 3745958-3791042  3743583-3795998  3743581-3795996
+    br
+    | 3456916-3505685  3451329-3524720  3451327-3524718
+    br
+    | 4842149-4858240  4845037-4858240  4828728-4859679
+    br
+    | FALSE POSITIVES                   1182398-1196378
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004578
+    br
+    | Organism:   Pseudomonas syringae pv. tomato str. DC3000
+    br
+    | Gnome size: 6397126 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 4515380-4530373  4528892-4563495  4505488-4530373
+    br
+    |                                   4528890-4566113
+    br
+    |   625118-647483               FN    628136-656971
+    br
+    | 2252628-2264999  2253746-2271122  2253004-2271122
+    br
+    | 3824683-3865352  3824687-3865357  3824685-3865355
+    br
+    | 4543843-4563495  4528892-4563495  4528890-4566113
+    br
+    | FALSE POSITIVES                   4443121-4460297 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004567
+    br
+    | Organism:   Lactobacillus plantarum WCFS1
+    br
+    | Gnome size: 3308274 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   590128-633804    589964-633123    589608-633123
+    br
+    | 2161732-2203820  2156168-2225486  2156166-2225484
+    br
+    | 2998563-3007280  2983802-3011139  2983800-3011137
+    br
+    | 2204171-2218342  2156168-2225486  2156166-2225484
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002488
+    br
+    | Organism:   Xylella fastidiosa 9a5c
+    br
+    | Gnome size: 2679306 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    |   489619-530138    497039-523687    506050-523687
+    br
+    | 2008224-2022372               FN  2006087-2024354
+    br
+    |   649115-690375    647732-697035    647732-697033
+    br
+    | 2361812-2404268  2351906-2408259  2348689-2388777
+    br
+    | 2177071-2183135  2176140-2198391  2157002-2184206
+    br
+    | 1514347-1541075  1514347-1540790  1514344-1557570
+    br
+    | 1585980-1631056  1585875-1640907  1585873-1640907
+    br
+    | FALSE POSITIVES                   1779582-1788942 **
+    br
+    |                                   2638610-2658009 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002678
+    br
+    | Organism:   Mesorhizobium loti MAFF303099
+    br
+    | Gnome size: 7036071 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 6975631-7011591  6975487-7020725  6975231-7011108
+    br
+    |   313639-359457    318704-347654    321147-347654
+    br
+    | 6587513-6595756               FN  6592538-6608727
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003210
+    br
+    | Organism:   Listeria monocytogenes EGD-e
+    br
+    | Gnome size: 2944528 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2361897-2400243  2360908-2403235  2360908-2403235
+    br
+    |   120654-131380    120654-136290    120654-131380
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002695
+    br
+    | Organism:   Escherichia coli O157:H7 str. Sakai
+    br
+    | Gnome size: 5498450 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2158314-2203914  2156899-2247627  2153413-2253837
+    br
+    |   300072-310238    300014-310600    300052-323524
+    br
+    | 1161297-1210641  1161098-1210748  1159810-1186416
+    br
+    |                                   1180157-1209126
+    br
+    | 5041093-5079469  5041093-5082381  5041814-5082381
+    br
+    | 1245217-1308182  1245905-1316399  1245903-1316397
+    br
+    | 1921472-1970014  1921443-1972369  1921441-1972367
+    br
+    | 2896151-2943747  2888774-2947429  2888774-2947429
+    br
+    | 3480256-3505039  3476233-3500191  3474905-3498417
+    br
+    |   310806-324405    310756-324405    300052-323524
+    br
+    |   892240-929292    892240-928363    892240-928363
+    br
+    | 1594751-1609184  1586046-1623577  1586046-1623575
+    br
+    | 1541626-1589842  1538645-1591832  1538645-1591830
+    br
+    |                  1586046-1623577  1586046-1623575
+    br
+    | 3193144-3200085  3192962-3201514  3190520-3204375
+    br
+    | 2593128-2612026  2592961-2614081  2592106-2614079
+    br
+    | 2667460-2713016  2668009-2712038  2668007-2712036
+    br
+    | 1618212-1665394  1586046-1623577  1586046-1623575
+    br
+    |                  1609998-1656531  1615552-1666524
+    br
+    | 1756865-1804219  1743558-1811658  1743556-1811656
+    br
+    | 2211826-2254161  2156899-2247627  2153413-2253837
+    br
+    | FALSE POSITIVES  1437802-1446999                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004307
+    br
+    | Organism:   Bifidobacterium longum NCC2705
+    br
+    | Gnome size: 2256640 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1298692-1312867  1288884-1312867  1288882-1312867
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004310
+    br
+    | Organism:   Brucella suis 1330
+    br
+    | Gnome size: 2107794 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   578085-584879    578578-587942    578578-588373
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003212
+    br
+    | Organism:   Listeria innocua Clip11262
+    br
+    | Gnome size: 3011208 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |    78505-114250     74218-115503     74218-115501
+    br
+    |   155931-166661    151526-171570    151526-166661
+    br
+    | 2407382-2445891  2405898-2462230  2406426-2446744
+    br
+    | 1246563-1294235  1245851-1297056  1245851-1297054
+    br
+    | 2591482-2625807  2580954-2629862  2580952-2629860
+    br
+    | 1713958-1762089  1710191-1767458  1710189-1767456
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003197
+    br
+    | Organism:   Salmonella typhimurium LT2
+    br
+    | Gnome size: 4857432 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2728976-2776816  2728976-2776892  2728976-2780003
+    br
+    |  962612-1006517   961043-1004271   961043-1006517
+    br
+    | 2042050-2059909               FN               FN
+    br
+    | 2844427-2879233  2836644-2885744  2836642-2885742
+    br
+    | 2330961-2345217  2327474-2345217               FN
+    br
+    | 4417918-4438335  4417918-4438335  4417918-4438335
+    br
+    | 1098228-1143714  1098181-1144022  1098179-1144020
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004557
+    br
+    | Organism:   Clostridium tetani E88
+    br
+    | Gnome size: 2799251 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1138054-1181003  1137516-1171268  1137516-1192459
+    br
+    | 1663821-1696302  1657698-1693073  1657696-1693071
+    br
+    | 2242455-2281387  2245647-2282092  2248862-2282092
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_000907
+    br
+    | Organism:   Haemophilus influenzae Rd KW20
+    br
+    | Gnome size: 1830138 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1559962-1594275  1558774-1597183  1558774-1597183
+    br
+    | 1499076-1513073  1495051-1513073  1495049-1513073
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002570
+    br
+    | Organism:   Bacillus halodurans C-125
+    br
+    | Gnome size: 4202352 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |     10970-22161               FN               FN
+    br
+    | 1381009-1384348               FN               FN
+    br
+    | 1028696-1039160  1025611-1043075  1025611-1043075
+    br
+    | 3617919-3652122  3617737-3655581  3617736-3658248
+    br
+    | FALSE POSITIVES  3783921-3800789                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004070
+    br
+    | Organism:   Streptococcus pyogenes MGAS315
+    br
+    | Gnome size: 1900521 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1313282-1351250  1313282-1354214  1313282-1354212
+    br
+    |   749213-788176    742916-788642    742914-788640
+    br
+    | 1137743-1171867  1131000-1172231  1130998-1172231
+    br
+    | 1410725-1450458  1398708-1455522  1398706-1455520
+    br
+    |  977738-1018193   977437-1019176   974608-1026068
+    br
+    | 1230304-1271815  1227589-1283430  1227589-1283428
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004722
+    br
+    | Organism:   Bacillus cereus ATCC 14579
+    br
+    | Gnome size: 5411809 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1805567-1866036  1803337-1866036  1803335-1866036
+    br
+    | 2531805-2565093  2520846-2580417  2520823-2579367
+    br
+    | 2355784-2369311               FN               FN
+    br
+    | 3660466-3668825  3655939-3668825  3655937-3668825
+    br
+    | FALSE POSITIVES                   5089874-5096357
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002978
+    br
+    | Organism:   Wolbachia endosymbiont of Drosophila melanogaster
+    br
+    | Gnome size: 1267782 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   567453-582561    560258-580671    560258-573485
+    br
+    |   245829-275225    253155-278902    253153-278900
+    br
+    |   551654-558625    548107-556883    548107-556883
+    br
+    |   623343-634537    622819-636172    614233-650482
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002655
+    br
+    | Organism:   Escherichia coli O157:H7 EDL933
+    br
+    | Gnome size: 5528445 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1879335-1897622  1835962-1931572  1835960-1935058
+    br
+    | 3551577-3565707  3546082-3567481  3544754-3565707
+    br
+    | 2966382-3015014  2959005-3018696  2959005-3018696
+    br
+    | 2668339-2688870  2668172-2689292  2667317-2692188
+    br
+    | 2285976-2330172  2272363-2331832  2272753-2342415
+    br
+    |   300073-310251    300055-324556    300053-323525
+    br
+    | 1897625-1908911  1835962-1931572  1835960-1935058
+    br
+    | 1702185-1725748  1693971-1748316  1670022-1705963
+    br
+    |                                   1693969-1748314
+    br
+    |   310756-323112    300055-324556    300053-323525
+    br
+    | 1250521-1295458  1250321-1295565  1249033-1295563
+    br
+    | 1330857-1391923  1330722-1400171  1330720-1400169
+    br
+    | 1678706-1693737  1678682-1693909  1670022-1705963
+    br
+    | 1849488-1879269  1835962-1931572  1835960-1935058
+    br
+    | 1909139-1930250  1835962-1931572  1835960-1935058
+    br
+    |   892845-930943    892759-931347    892757-931345
+    br
+    | 1730065-1756006  1693971-1748316  1693969-1748314
+    br
+    |                                   1748352-1756006
+    br
+    | 1626722-1673485  1623741-1675808  1623741-1675806
+    br
+    |                                   1670022-1705963
+    br
+    | 2743223-2788348  2743226-2797853  2743224-2788401
+    br
+    | 2118738-2165694  2107529-2165694  2116354-2148177
+    br
+    |                                   2142480-2177204
+    br
+    | 3263064-3270404  3262918-3271470  3260476-3274334
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004606
+    br
+    | Organism:   Streptococcus pyogenes SSI-1
+    br
+    | Gnome size: 1894275 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1107957-1147543  1098748-1161350  1098746-1161348
+    br
+    |   725017-759141    724653-759313    724653-759311
+    br
+    |   446427-486160    441338-498168    441336-498166
+    br
+    |   625070-666334    624977-669296    623853-669296
+    br
+    |   545636-583603    545489-583680    545487-583678
+    br
+    |   878690-919064    877707-924830    877707-924828
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002758
+    br
+    | Organism:   Staphylococcus aureus subsp. aureus Mu50
+    br
+    | Gnome size: 2878529 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    |   917507-962565    917452-961932    910703-961979
+    br
+    | 2083515-2126110  2082982-2129322  2069951-2129411
+    br
+    |                  2124924-2152937  2124922-2150747
+    br
+    | FALSE POSITIVES  1936945-1959426    854223-895164 **
+    br
+    |                    865041-882822                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003919
+    br
+    | Organism:   Xanthomonas axonopodis pv. citri str. 306
+    br
+    | Gnome size: 5175554 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 3105263-3115868  3081511-3128919  3081509-3127792
+    br
+    | 1211424-1228677  1220880-1228677  1209301-1229038
+    br
+    | ==================================================================
+  br
+
+  a name="table5"
+  p.caption Table 5: Detailed evaluation results for PHAST (2011) and PHASTER (2016) run on unannotated genome sequences. Evaluation was made against manual prophage annotations in 54 bacterial genomes from Casjens, S. (2003) Molecular microbiology, 49, 277-300. Prophages predicted by PHASTER that were absent in the evaluation set were manually inspected, and several (marked below with **) were deemed to have good evidence of being true prophages rather than being false positives.
+
+  pre
+    | ==================================================================
+    br
+    | NCBI id:    NC_000962
+    br
+    | Organism:   Mycobacterium tuberculosis H37Rv
+    br
+    | Gnome size: 4411532 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2970551-2981576  2970065-2980835  2970063-2980833
+    br
+    | 1780643-1788505               FN  1766987-1788115
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_000913
+    br
+    | Organism:   Escherichia coli K12
+    br
+    | Gnome size: 4639675 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   262552-296320               FN               FN
+    br
+    | 2464567-2475651               FN  2465301-2477629
+    br
+    | 2754181-2775804               FN               FN
+    br
+    |   564038-584856    563980-585282    564755-586057
+    br
+    | 1410024-1432281  1409925-1432985  1411899-1434959
+    br
+    | 1196090-1210402  1197865-1215896  1198640-1216671
+    br
+    | 1631063-1650732  1616881-1650732  1627517-1644304
+    br
+    | 2556793-2563354               FN               FN
+    br
+    | 2064329-2076158               FN               FN
+    br
+    | FALSE POSITIVES                   3716547-3722049
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003112
+    br
+    | Organism:   Neisseria meningitidis MC58
+    br
+    | Gnome size: 2272360 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1001560-1005455   998266-1007364               FN
+    br
+    | 1099910-1133980  1099110-1133760  1101164-1133966
+    br
+    | FALSE POSITIVES    916111-930967    916109-929811
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002947
+    br
+    | Organism:   Pseudomonas putida KT2440
+    br
+    | Gnome size: 6181863 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 4372649-4427414  4375285-4412410  4375283-4412410
+    br
+    |                  4417270-4440874                 
+    br
+    | 2586633-2625819  2585881-2626121  2586645-2608847
+    br
+    | 3418567-3447235  3401670-3459949  3426049-3447235
+    br
+    | 1738082-1774805  1734865-1780108  1748035-1781069
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003902
+    br
+    | Organism:   Xanthomonas campestris pv. campestris str. ATCC 33913
+    br
+    | Gnome size: 5076188 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2435595-2441676               FN  2435792-2454339
+    br
+    | 3523234-3560198  3517532-3560198  3523035-3562020
+    br
+    | 2441850-2447920               FN  2435792-2454339
+    br
+    | FALSE POSITIVES  1855984-1886789  4258232-4274508
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002935
+    br
+    | Organism:   Corynebacterium diphtheriae NCTC 13129
+    br
+    | Gnome size: 2488635 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   776521-790960               FN               FN
+    br
+    | 2216802-2297805               FN               FN
+    br
+    | 1866723-1880855               FN  1863158-1880771
+    br
+    |   154365-190992    151932-190743    151930-190741
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003198
+    br
+    | Organism:   Salmonella enterica subsp. enterica serovar Typhi str. CT18
+    br
+    | Gnome size: 4809037 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1888674-1933558  1885617-1927047  1885326-1933598
+    br
+    | 3515470-3548975  3511575-3552602  3504242-3555052
+    br
+    | 1538899-1572919  1538899-1572919  1538899-1572919
+    br
+    | 4473973-4507270  4459146-4507270  4459144-4507514
+    br
+    | 1008747-1052755  1008700-1053062  1008698-1053060
+    br
+    | 4683853-4694545  4683672-4696075  4683670-4696075
+    br
+    | 2760475-2768771               FN               FN
+    br
+    | FALSE POSITIVES  1781177-1787337  1079782-1090874
+    br
+    |                                   1781177-1789457
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004337
+    br
+    | Organism:   Shigella flexneri 2a str. 301
+    br
+    | Gnome size: 4607203 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2227585-2235565  2220680-2241353  2220680-2240203
+    br
+    |   238841-251370    236055-252705    236055-252705
+    br
+    |   899706-918668    899339-921295    899339-921295
+    br
+    |   311291-328079    306585-340777    306583-340775
+    br
+    | 2683559-2698944               FN  2684932-2695524
+    br
+    | 1919854-1942697  1916802-1945128  1916802-1946940
+    br
+    | 2049694-2066397  2032769-2079336  2030315-2079334
+    br
+    | 1175319-1188408  1174944-1188408  1174944-1188408
+    br
+    | 1395280-1421884  1373649-1427197  1387236-1407895
+    br
+    |                                   1401123-1425759
+    br
+    |   696659-747734    696659-749966    696659-747734
+    br
+    | FALSE POSITIVES  2352233-2367765    492546-495944
+    br
+    |                  2950035-2958559  1081687-1103027
+    br
+    |                  3051242-3094081  1574398-1580656
+    br
+    |                  1574398-1583708  3687621-3693861
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002967
+    br
+    | Organism:   Treponema denticola ATCC 35405
+    br
+    | Gnome size: 2843201 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1169950-1202411  1164701-1202621  1175279-1214754
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002737
+    br
+    | Organism:   Streptococcus pyogenes M1 GAS
+    br
+    | Gnome size: 1852441 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   527569-571887    529593-570496    526682-570494
+    br
+    | 1773458-1782822               FN               FN
+    br
+    |   778642-820599    777508-820962    775802-821679
+    br
+    | 1192854-1222549  1182570-1222912  1182568-1222912
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003030
+    br
+    | Organism:   Clostridium acetobutylicum ATCC 824
+    br
+    | Gnome size: 3940880 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2024020-2074254  2017739-2083829  2013351-2078513
+    br
+    | 1277643-1346789               FN  1274369-1283638
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003116
+    br
+    | Organism:   Neisseria meningitidis Z2491
+    br
+    | Gnome size: 2184406 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1768546-1807515  1770842-1807515  1768546-1807515
+    br
+    | 1131796-1138899               FN               FN
+    br
+    | 1207416-1236260  1211167-1236054  1218293-1236260
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004431
+    br
+    | Organism:   Escherichia coli CFT073
+    br
+    | Gnome size: 5231428 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 1169792-1228729               FN               FN
+    br
+    |   909332-942273    907025-945470    908948-945468
+    br
+    | 3019963-3065315  3007214-3065315  3007212-3065315
+    br
+    | 4923133-4929628               FN               FN
+    br
+    | 1397370-1452231  1394721-1452257  1394721-1452255
+    br
+    | 1378215-1388952  1327942-1397351  1324666-1381279
+    br
+    | 1327053-1372820  1327942-1397351  1324666-1381279
+    br
+    | FALSE POSITIVES    244220-257682    244220-265366 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004116
+    br
+    | Organism:   Streptococcus agalactiae 2603V/R
+    br
+    | Gnome size: 2160267 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1833318-1867117  1816885-1876443  1816883-1876441
+    br
+    |   558254-599207    550500-617296    550498-617294
+    br
+    | FALSE POSITIVES  1944854-1978401                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002745
+    br
+    | Organism:   Staphylococcus aureus subsp. aureus N315
+    br
+    | Gnome size: 2814816 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 2005924-2049520  2005721-2052732  2005721-2052732
+    br
+    | FALSE POSITIVES  2054348-2076507  2054346-2074317 **
+    br
+    |                  1859152-1881615                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002662
+    br
+    | Organism:   Lactococcus lactis subsp. lactis Il1403
+    br
+    | Gnome size: 2365589 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1036642-1071558  1033815-1077533  1033815-1077531
+    br
+    |   502723-513742    502338-520485    502338-517610
+    br
+    |     35516-49727      28461-56371      28459-56369
+    br
+    | 1414112-1456949  1414112-1457046  1414112-1457044
+    br
+    | 2013685-2025635  1997701-2028023  1997699-2028023
+    br
+    |   447236-483244    443687-484066    447143-484064
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002516
+    br
+    | Organism:   Pseudomonas aeruginosa PAO1
+    br
+    | Gnome size: 6264404 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    |   689236-702529    673191-701381    670089-701381
+    br
+    |   672777-689221    673191-701381    670089-701381
+    br
+    | FALSE POSITIVES    780997-796776    780995-796776 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_005085
+    br
+    | Organism:   Chromobacterium violaceum ATCC 12472
+    br
+    | Gnome size: 4751080 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2303969-2334742  2300705-2344086  2300705-2339162
+    br
+    |   353384-372826    353384-374612    353384-378213
+    br
+    |   428568-450397    427983-449939    427983-447996
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_000964
+    br
+    | Organism:   Bacillus subtilis subsp. subtilis str. 168
+    br
+    | Gnome size: 4214630 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2151284-2285604  2151626-2290857  2151626-2288090
+    br
+    | 2055488-2064044               FN               FN
+    br
+    | 2666111-2700582  2653064-2701100  2653062-2701098
+    br
+    | 1320640-1347494  1325096-1348182  1314453-1348182
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_005362
+    br
+    | Organism:   Lactobacillus johnsonii NCC 533
+    br
+    | Gnome size: 1992676 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   327894-367791    327849-370611    327847-374448
+    br
+    | 1292553-1330377  1292072-1331686  1287749-1331686
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003485
+    br
+    | Organism:   Streptococcus pyogenes MGAS8232
+    br
+    | Gnome size: 1895017 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   293882-332714    283161-348115    277254-332714
+    br
+    | 1451844-1493373  1443375-1493373  1443373-1493373
+    br
+    | 1041280-1087739  1041280-1088722  1038487-1095615
+    br
+    |   578093-618765    578055-619104    575144-619102
+    br
+    | 1206360-1241416  1200228-1241780  1200226-1241780
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003366
+    br
+    | Organism:   Clostridium perfringens str. 13
+    br
+    | Gnome size: 3031430 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1298199-1327800  1310119-1335464  1310119-1327800
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003923
+    br
+    | Organism:   Staphylococcus aureus subsp. aureus MW2
+    br
+    | Gnome size: 2820462 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 2046605-2088749  2036090-2091958  2036088-2091958
+    br
+    | 1529381-1573005  1522195-1584851  1522193-1584849
+    br
+    | FALSE POSITIVES    836064-854951    836064-853794 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_005126
+    br
+    | Organism:   Photorhabdus luminescens subsp. laumondii TTO1
+    br
+    | Gnome size: 5688987 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 2552735-2573940               FN               FN
+    br
+    | 4190163-4242791               FN               FN
+    br
+    | 4340686-4389134  4340329-4385481  4324782-4373679
+    br
+    | 5175988-5190589               FN               FN
+    br
+    | 2088101-2101272               FN               FN
+    br
+    | 2800483-2848507               FN               FN
+    br
+    | 3774756-3892173               FN               FN
+    br
+    | 5201181-5228815               FN  5211071-5239791
+    br
+    | 4006891-4056690  4007651-4076282  4005528-4094743
+    br
+    | 1267570-1617919               FN               FN
+    br
+    | 2331853-2466741  2354852-2390454  2372413-2387799
+    br
+    | 2955621-2991661               FN               FN
+    br
+    | 3409531-3537385  3405940-3468149  3397086-3479941
+    br
+    |                  3512834-3535879  3517195-3537385
+    br
+    |     10251-29999      10251-32806      10251-32806
+    br
+    |   132320-180394               FN               FN
+    br
+    | FALSE POSITIVES                     490798-502770
+    br
+    |                                   1785333-1795520
+    br
+    |                                   1983763-1993171 **
+    br
+    |                                   2035298-2041677 **
+    br
+    |                                   5559641-5566514 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004631
+    br
+    | Organism:   Salmonella enterica subsp. enterica serovar Typhi Ty2
+    br
+    | Gnome size: 4791961 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 4458029-4490856  4446023-4491190  4446021-4491188
+    br
+    | 4671630-4678034  4666561-4678557  4666559-4678557
+    br
+    | 1928058-1972330  1928058-1972330  1927739-1972365
+    br
+    | 2735202-2754628  2734606-2760158  2734604-2760158
+    br
+    | 1314607-1441766  1408218-1441766  1408218-1441766
+    br
+    | 3501128-3538076  3497233-3538262  3489900-3540712
+    br
+    | FALSE POSITIVES  1193795-1199955  1193795-1199955
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003143
+    br
+    | Organism:   Yersinia pestis CO92
+    br
+    | Gnome size: 4653728 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   964013-971311               FN    954442-989832
+    br
+    | 1392489-1416524               FN               FN
+    br
+    | 1233128-1243405               FN               FN
+    br
+    | 2554373-2563203               FN               FN
+    br
+    | 2363019-2413098  2362962-2404686  2362960-2404684
+    br
+    | 2115626-2122603               FN  2111358-2140547
+    br
+    | FALSE POSITIVES  1807069-1816414                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004668
+    br
+    | Organism:   Enterococcus faecalis V583
+    br
+    | Gnome size: 3218031 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1398097-1443843  1398053-1447105  1398051-1446151
+    br
+    | 2817287-2829554               FN               FN
+    br
+    | 2004910-2048146  2021650-2049919  2001579-2020730
+    br
+    |                                   2023234-2049919
+    br
+    | 1245337-1259965  1242193-1259965  1245337-1259965
+    br
+    | 2700666-2736808  2697272-2736808  2697272-2736808
+    br
+    | 1923000-1962485  1925423-1948114  1925423-1948114
+    br
+    |   289354-326185    288968-332966    288966-332964
+    br
+    | FALSE POSITIVES  2537668-2551243                 
+    br
+    |                    551891-566251                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003295
+    br
+    | Organism:   Ralstonia solanacearum GMI1000
+    br
+    | Gnome size: 3716413 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2084602-2124346  2080692-2125142  2084443-2125140
+    br
+    | 1003644-1018473               FN               FN
+    br
+    | 1781995-1823953  1782598-1838886  1798179-1821238
+    br
+    | 2049204-2056036               FN               FN
+    br
+    | 3486521-3505550               FN               FN
+    br
+    | 2684129-2695788               FN               FN
+    br
+    | 1591303-1598986               FN               FN
+    br
+    |   879632-939437    879632-899438    887600-899438
+    br
+    | FALSE POSITIVES                   3456925-3462472
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003155
+    br
+    | Organism:   Streptomyces avermitilis MA-4680
+    br
+    | Gnome size: 9025608 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 6670511-6721444  6673473-6693625  6678303-6693625
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004347
+    br
+    | Organism:   Shewanella oneidensis MR-1
+    br
+    | Gnome size: 4969803 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2788307-2822836  2788307-2822836  2788307-2822836
+    br
+    |   669361-703908    668166-708836    655830-720989
+    br
+    | 3075409-3126249  3076443-3126351  3076443-3126349
+    br
+    | FALSE POSITIVES  4434306-4457138                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004741
+    br
+    | Organism:   Shigella flexneri 2a str. 2457T
+    br
+    | Gnome size: 4599354 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   238511-254700    235184-256034    235184-256034
+    br
+    | 1177837-1191596  1177792-1192294  1177790-1192292
+    br
+    | 1614219-1620622  1612770-1624438  1612770-1627925
+    br
+    | 2021895-2044342  2012871-2061855  2006995-2054672
+    br
+    |   313843-327223    309137-339911    309135-339909
+    br
+    | 1912634-1921793  1872285-1932001  1893682-1923605
+    br
+    |   710297-746123    692891-748184    692891-748184
+    br
+    | 1901037-1921793  1872285-1932001  1881581-1903815
+    br
+    |                                   1893682-1923605
+    br
+    |   897790-930670    893482-918345    893482-918345
+    br
+    |                    915755-943797    915753-943795
+    br
+    | 2678519-2687517  2674260-2688968  2678519-2688968
+    br
+    | 1100131-1105919               FN  1084465-1105919
+    br
+    |   692891-709118    692891-748184    692891-748184
+    br
+    | FALSE POSITIVES  2047401-2074125    492349-495747
+    br
+    |                  2201408-2220775  2058418-2071061
+    br
+    |                  2331690-2347222  2201408-2219625
+    br
+    |                                   2594187-2620410
+    br
+    |                                   4081357-4087597
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004088
+    br
+    | Organism:   Yersinia pestis KIM
+    br
+    | Gnome size: 4600755 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2693615-2700576  2676241-2705460  2676239-2705458
+    br
+    | 3389410-3399754               FN               FN
+    br
+    | 3595228-3601343               FN  3584471-3619864
+    br
+    | 2417129-2456467  2415700-2456467  2415700-2456467
+    br
+    | 3237524-3255252               FN               FN
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004556
+    br
+    | Organism:   Xylella fastidiosa Temecula1
+    br
+    | Gnome size: 2519802 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2005731-2020421  2004606-2022616  2005890-2022616
+    br
+    | 1847752-1855582               FN               FN
+    br
+    | 1161143-1217907  1161143-1180387  1161143-1180387
+    br
+    |                  1170407-1224505  1194458-1217907
+    br
+    | 1117952-1142627  1128432-1143339  1132387-1143339
+    br
+    |   454017-467611    450846-469025    446956-480065
+    br
+    | 1288547-1392763  1288547-1331541  1288023-1331541
+    br
+    |                  1362504-1398130  1362502-1398128
+    br
+    | 1550281-1556188               FN               FN
+    br
+    | FALSE POSITIVES                     942607-968324
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003997
+    br
+    | Organism:   Bacillus anthracis str. Ames
+    br
+    | Gnome size: 5227293 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   447387-484339    442051-487498    442049-487496
+    br
+    | 3745958-3791042  3743583-3795491  3743581-3795489
+    br
+    | 3456916-3505685  3452696-3517428  3452694-3517426
+    br
+    | 4842149-4858240  4845037-4858240  4845035-4859679
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004578
+    br
+    | Organism:   Pseudomonas syringae pv. tomato str. DC3000
+    br
+    | Gnome size: 6397126 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 4515380-4530373  4505490-4530373  4505488-4530373
+    br
+    |   625118-647483               FN    623546-651202
+    br
+    | 2252628-2264999               FN  2253004-2271122
+    br
+    | 3824683-3865352  3825217-3859789  3825215-3859787
+    br
+    | 4543843-4563495  4531874-4564742  4531872-4566113
+    br
+    | FALSE POSITIVES  4442166-4460297  4442166-4460297 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004567
+    br
+    | Organism:   Lactobacillus plantarum WCFS1
+    br
+    | Gnome size: 3308274 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   590128-633804    589964-631772    589608-631770
+    br
+    | 2161732-2203820  2156168-2225486  2157270-2197761
+    br
+    |                                   2188411-2232769
+    br
+    | 2998563-3007280               FN               FN
+    br
+    | 2204171-2218342  2156168-2225486  2188411-2232769
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002488
+    br
+    | Organism:   Xylella fastidiosa 9a5c
+    br
+    | Gnome size: 2679306 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   489619-530138    486958-528483    486956-528481
+    br
+    | 2008224-2022372  2005406-2022394  2006087-2024354
+    br
+    |   649115-690375    647699-697035    647699-697033
+    br
+    | 2361812-2404268  2358989-2416179  2361812-2388777
+    br
+    | 2177071-2183135  2176140-2198391  2170954-2199787
+    br
+    | 1514347-1541075  1500396-1549341  1514344-1557570
+    br
+    | 1585980-1631056  1585875-1640907  1585873-1640907
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002678
+    br
+    | Organism:   Mesorhizobium loti MAFF303099
+    br
+    | Gnome size: 7036071 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 6975631-7011591  6975487-7020725  6975231-7011108
+    br
+    |   313639-359457    313234-360978    321147-347654
+    br
+    | 6587513-6595756               FN  6592538-6608727
+    br
+    | FALSE POSITIVES  4868226-4896693  4803034-4831740
+    br
+    |                                   4868224-4896691
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003210
+    br
+    | Organism:   Listeria monocytogenes EGD-e
+    br
+    | Gnome size: 2944528 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2361897-2400243  2360908-2403235  2360908-2403235
+    br
+    |   120654-131380    120654-136290    120654-131380
+    br
+    | FALSE POSITIVES    166687-174556                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002695
+    br
+    | Organism:   Escherichia coli O157:H7 str. Sakai
+    br
+    | Gnome size: 5498450 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 2158314-2203914  2156899-2247603  2153413-2254887
+    br
+    |   300072-310238    300054-324555    291210-317713
+    br
+    | 1161297-1210641  1161098-1210748  1159810-1178581
+    br
+    |                                   1180157-1209126
+    br
+    | 5041093-5079469  5041093-5082381  5042064-5079469
+    br
+    | 1245217-1308182  1245905-1316399  1245903-1316397
+    br
+    | 1921472-1970014  1921443-1972369  1921441-1972367
+    br
+    | 2896151-2943747  2888774-2947429  2888774-2947429
+    br
+    | 3480256-3505039  3479659-3500191  3479657-3500189
+    br
+    |   310806-324405    300054-324555    291210-317713
+    br
+    |   892240-929292    891110-929696    891108-929694
+    br
+    | 1594751-1609184  1586046-1621990  1586046-1621988
+    br
+    | 1541626-1589842  1541512-1591832  1538645-1591830
+    br
+    |                  1586046-1621990  1586046-1621988
+    br
+    | 3193144-3200085  3192962-3201514  3191900-3201512
+    br
+    | 2593128-2612026  2592961-2614081  2592106-2616977
+    br
+    | 2667460-2713016  2668009-2712038  2668007-2712036
+    br
+    | 1618212-1665394  1586046-1621990  1586046-1621988
+    br
+    |                  1609998-1656531  1615552-1666524
+    br
+    | 1756865-1804219  1770296-1823989  1757549-1814804
+    br
+    | 2211826-2254161  2156899-2247603  2153413-2254887
+    br
+    | FALSE POSITIVES  1437802-1446999                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004307
+    br
+    | Organism:   Bifidobacterium longum NCC2705
+    br
+    | Gnome size: 2256640 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1298692-1312867  1288884-1312690  1288882-1312690
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004310
+    br
+    | Organism:   Brucella suis 1330
+    br
+    | Gnome size: 2107794 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   578085-584879    578497-592232    578497-592232
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003212
+    br
+    | Organism:   Listeria innocua Clip11262
+    br
+    | Gnome size: 3011208 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |    78505-114250     74218-115503     74218-115501
+    br
+    |   155931-166661    151526-171570    151526-166661
+    br
+    | 2407382-2445891  2405898-2462230  2406426-2446744
+    br
+    | 1246563-1294235  1245851-1297056  1245851-1297054
+    br
+    | 2591482-2625807  2580954-2629862  2580952-2629860
+    br
+    | 1713958-1762089  1710191-1767458  1710189-1767456
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003197
+    br
+    | Organism:   Salmonella typhimurium LT2
+    br
+    | Gnome size: 4857432 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 2728976-2776816  2729000-2776892  2731822-2776890
+    br
+    |  962612-1006517   961043-1003236   961043-1006517
+    br
+    | 2042050-2059909               FN               FN
+    br
+    | 2844427-2879233  2844267-2879414  2844265-2879414
+    br
+    | 2330961-2345217  2327474-2344711  2330961-2345217
+    br
+    | 4417918-4438335  4417918-4438335  4417918-4438335
+    br
+    | 1098228-1143714  1098181-1144022  1098179-1144020
+    br
+    | FALSE POSITIVES  1957835-1973856  1957835-1971770 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004557
+    br
+    | Organism:   Clostridium tetani E88
+    br
+    | Gnome size: 2799251 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1138054-1181003  1137606-1171268  1137606-1185305
+    br
+    | 1663821-1696302  1651670-1710164  1657696-1693071
+    br
+    | 2242455-2281387  2243717-2282092  2232193-2282092
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_000907
+    br
+    | Organism:   Haemophilus influenzae Rd KW20
+    br
+    | Gnome size: 1830138 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    | 1559962-1594275  1558774-1597183  1558774-1597183
+    br
+    | 1499076-1513073  1495051-1513250  1495049-1513250
+    br
+    | FALSE POSITIVES  1636791-1643216  1636791-1643216 **
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002570
+    br
+    | Organism:   Bacillus halodurans C-125
+    br
+    | Gnome size: 4202352 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |     10970-22161               FN               FN
+    br
+    | 1381009-1384348               FN               FN
+    br
+    | 1028696-1039160  1025611-1043075  1025611-1043075
+    br
+    | 3617919-3652122  3625321-3655581  3606875-3658248
+    br
+    | FALSE POSITIVES  3783921-3800789                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004070
+    br
+    | Organism:   Streptococcus pyogenes MGAS315
+    br
+    | Gnome size: 1900521 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1313282-1351250  1313282-1354214  1313282-1354212
+    br
+    |   749213-788176    742916-788642    742914-788640
+    br
+    | 1137743-1171867  1131000-1172231  1130998-1172231
+    br
+    | 1410725-1450458  1410544-1452968  1410542-1452968
+    br
+    |  977738-1018193   977437-1019176   974608-1026068
+    br
+    | 1230304-1271815  1227589-1283430  1227589-1283428
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004722
+    br
+    | Organism:   Bacillus cereus ATCC 14579
+    br
+    | Gnome size: 5411809 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1805567-1866036  1803337-1866036  1803335-1866036
+    br
+    | 2531805-2565093  2520846-2580417  2520823-2579367
+    br
+    | 2355784-2369311               FN               FN
+    br
+    | 3660466-3668825  3657003-3668825  3655937-3668825
+    br
+    | FALSE POSITIVES                   5089874-5096462
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002978
+    br
+    | Organism:   Wolbachia endosymbiont of Drosophila melanogaster
+    br
+    | Gnome size: 1267782 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    |   567453-582561    548107-572145    548107-573485
+    br
+    |                    572259-584372                 
+    br
+    |   245829-275225    236216-278994    236214-278992
+    br
+    |   551654-558625    548107-572145    548107-573485
+    br
+    |   623343-634537    626322-642427    626320-642425
+    br
+    | FALSE POSITIVES    437078-443628                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002655
+    br
+    | Organism:   Escherichia coli O157:H7 EDL933
+    br
+    | Gnome size: 5528445 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1879335-1897622  1862359-1931572  1862359-1935058
+    br
+    | 3551577-3565707  3549508-3567481  3549506-3567479
+    br
+    | 2966382-3015014  2961049-3018696  2961049-3018696
+    br
+    | 2668339-2688870  2668172-2689292  2667317-2692188
+    br
+    | 2285976-2330172  2272363-2331832  2272753-2330172
+    br
+    |   300073-310251    300055-324556    291211-317714
+    br
+    | 1897625-1908911  1862359-1931572  1862359-1935058
+    br
+    | 1702185-1725748  1693971-1748316  1699525-1757930
+    br
+    |   310756-323112    300055-324556    291211-317714
+    br
+    | 1250521-1295458  1250321-1295565  1249033-1295563
+    br
+    | 1330857-1391923  1330722-1400171  1330720-1400169
+    br
+    | 1678706-1693737  1678682-1693909  1683407-1692862
+    br
+    | 1849488-1879269  1862359-1931572  1862359-1935058
+    br
+    | 1909139-1930250  1862359-1931572  1862359-1935058
+    br
+    |   892845-930943    892759-931347    892757-931345
+    br
+    | 1730065-1756006  1693971-1748316  1699525-1757930
+    br
+    | 1626722-1673485  1626608-1675808  1623741-1675806
+    br
+    | 2743223-2788348  2743226-2788403  2743224-2788401
+    br
+    | 2118738-2165694  2107529-2165694  2107527-2165694
+    br
+    | 3263064-3270404  3262918-3271470  3261856-3271468
+    br
+    | FALSE POSITIVES  1125968-1135165                 
+    br
+    |                  1521574-1530771                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_004606
+    br
+    | Organism:   Streptococcus pyogenes SSI-1
+    br
+    | Gnome size: 1894275 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 1107957-1147543  1098748-1161350  1098746-1161348
+    br
+    |   725017-759141    724653-759313    724653-759311
+    br
+    |   446427-486160    443902-486333    443902-486331
+    br
+    |   625070-666334    624977-669296    623853-669296
+    br
+    |   545636-583603    545489-583680    545487-583678
+    br
+    |   878690-919064    877707-924830    877707-924828
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_002758
+    br
+    | Organism:   Staphylococcus aureus subsp. aureus Mu50
+    br
+    | Gnome size: 2878529 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER (** = likely true positive)
+    br
+    | ..................................................................
+    br
+    |   917507-962565    917452-961932    910703-961979
+    br
+    | 2083515-2126110  2084317-2129322  2082980-2129322
+    br
+    |                  2124924-2152937  2124922-2150747
+    br
+    | FALSE POSITIVES  1936945-1959408    854223-895164 **
+    br
+    |                    865041-882822                 
+    br
+    | ==================================================================
+    br
+    | NCBI id:    NC_003919
+    br
+    | Organism:   Xanthomonas axonopodis pv. citri str. 306
+    br
+    | Gnome size: 5175554 bp
+    br
+    | ..................................................................
+    br
+    |       reference            PHAST          PHASTER
+    br
+    | ..................................................................
+    br
+    | 3105263-3115868  3081511-3127794  3081509-3127792
+    br
+    | 1211424-1228677               FN  1209301-1229038
+    br
+    | ==================================================================
+
+
+    br
+    br

@@ -1,0 +1,8 @@
+li class=('active' if current_page?(root_path)) = link_to 'New Search', main_app.root_path
+li class=('active' if current_page?(submissions_path)) = link_to 'Genomes', main_app.submissions_path
+li class=('active' if current_page?(input_path)) = link_to 'Help', main_app.instructions_path
+li class=('active' if params[:controller] == 'home')
+  a class="dropdown-button" href="#!" data-activates="dropdown1"
+    | About
+    i.material-icons.right arrow_drop_down
+li class=('active' if current_page?(my_searches_path)) = link_to 'My Searches', main_app.my_searches_path

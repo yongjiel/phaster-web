@@ -1,0 +1,21 @@
+# Config file for syncfast. Syncfast is a script
+# to download the current production version of a database
+# and dump it into the local dev database.
+
+# SSH user of the application on the production server
+ssh_user: 'phaster'
+
+# SSH host of the production server
+ssh_host: phaster.ca
+
+# Uncomment the following if you want to backup your local
+# database before importing the remote database (same as -b)
+#backup: true
+
+# Uncomment the following if you want to silence output by
+# default (same as -s)
+#silent: true
+
+# Uncomment the following if you want to force the database to
+# be loaded without prompting (same as -f)
+#force: true

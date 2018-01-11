@@ -1,0 +1,121 @@
+#plasmid-viewer {
+  border: 2px solid #9e9e9e;
+  background-color: white;
+  vertical-align: top;
+}
+
+#plasmid-box {
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 266px);
+}
+
+#plasmid-info-box {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 260px;
+}
+
+#plasmid-name {
+  font-weight: bold;
+}
+
+#plasmid-legend {
+  text-align: left;
+  display: block;
+  background-color: #e0e0e0;
+  padding: 10px;
+  margin: 10px 10px;
+}
+
+#plasmid-name,
+#plasmid-length,
+#plasmid-phages {
+  margin: 5px 10px;
+}
+
+#plasmid-length,
+#plasmid-phages {
+  display: block;
+  text-align: right;
+}
+
+.plasmid-btn {
+  display: block;
+  margin: 5px auto;
+  height: 30px;
+  line-height: 30px;
+  text-transform: none;
+  font-size: 14px;
+  width: 220px;
+}
+
+#plasmid-info {
+  text-align: left;
+  display: block;
+  background-color: #e0e0e0;
+  padding: 10px;
+  margin: 10px 10px;
+  min-height: 164px;
+  width: 240px;
+}
+
+#plasmid-info .header {
+  font-weight: bold;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.plasmid {
+  background-color: white;
+  margin: 0 auto;
+}
+
+.plasmidtrack {
+  fill: #e0e0e0;
+  stroke: #bdbdbd;
+}
+
+.sminor,
+.sminorin {
+  stroke: #bdbdbd;
+}
+
+.smajor,
+.smajorin {
+  stroke: #ffa000;
+}
+
+.sml {
+  fill: #9e9e9e;
+  font-size: 10px;
+}
+
+.mlabel {
+  font-weight: bold;
+}
+
+.mlabelline {
+  stroke: #ffa000;
+}
+
+.region_line {
+
+}
+
+.blabel {
+  font-size: 10px;
+  font-weight: normal;
+}
+
+.border_line {
+  // stroke-dasharray: 5,5
+  stroke-dasharray: 2,1
+}
+
+#plasmid-box .marker:hover,
+#plasmid-box .mlabel:hover {
+  cursor: pointer;
+}

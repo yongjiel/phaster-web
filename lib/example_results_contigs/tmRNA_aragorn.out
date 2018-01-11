@@ -1,0 +1,50 @@
+------------------------------
+ARAGORN v1.2      Dean Laslett
+------------------------------
+
+Please reference the following paper if you use this
+program as part of any published research.
+
+Laslett, D. and Canback, B. (2004) ARAGORN, a
+program for the detection of transfer RNA and
+transfer-messenger RNA genes in nucleotide sequences.
+Nucleic Acids Research, 32;11-16.
+
+
+Searching for tmRNA genes
+Assuming circular topology, search wraps around ends
+Searching both strands
+Using standard genetic code
+
+
+gi|00000000|ref|NC_000000| Genome; Raw sequence
+4641652 nucleotides in sequence
+Mean G+C content = 50.8%
+
+1.
+Location [2755593,2755955]
+tmRNA Sequence in gi|00000000|ref|NC_000000| Genome; Raw sequence
+
+1   .   10    .   20    .   30    .   40    .   50
+ggggctgattctggattcgacgggatttGCGAAACCCAAGGTGCATGCCG
+AGGGGCGGTTGGCCTCGTAAAAAGCCGCAAAAAATAGTCgcaaacgacga
+aaactacgctttagcagcttaataaCCTGCTTAGAGCCCTCTCTCCCTAG
+CCTCCGCTCTTAGGACGGGGATCAAGAGAGGTCAAACCCAAAAGAGATCG
+CGTGGAAGCCCTGCCTGGGGTTGAAGCGTTAAAACTTAATCAGGCTAGTT
+TGTTAGTGGCGTGTCCGTCCGCAGCTGGCAAGCGAATGTAAAGACTGACT
+AAGCATGTAGTACCGAGGATGTAGgaatttcggacgcgggttcaactccc
+gccagctccacca
+
+Resume consensus sequence (at 83): aatagtcgcaaacgacga
+
+Tag peptide (at 90)
+Tag sequence: gca-aac-gac-gaa-aac-tac-gct-tta-gca-gct-taa-taa
+Tag peptide:  Ala-Asn-Asp-Glu-Asn-Tyr-Ala-Leu-Ala-Ala-Stop-Stop
+Tag peptide:  ANDENYALAA**
+Match with many tmRNA tags
+
+
+
+
+
+Configuration: aragorn -m -o tmRNA_aragorn.out ZZ_eda889a4b3.fna 

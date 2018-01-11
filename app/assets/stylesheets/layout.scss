@@ -1,0 +1,522 @@
+@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,700);
+
+/* Set font */
+
+html, text {
+  font-family: 'Maven Pro', sans-serif;
+}
+
+/* Extensions */
+
+img {
+  @extend .responsive-img;
+}
+
+/* Make footer sticky */
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* Navbar */
+
+.nav-wrapper {
+  padding: 0px 10px;
+}
+
+nav, .page-footer {
+  @extend .amber, .darken-2;
+}
+
+nav ul li:hover, nav ul li.active, .footer-copyright {
+  @extend .amber, .darken-3;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+  @extend .indigo-text, .text-darken-2;
+}
+
+.dropdown-content li > a:hover, .dropdown-content li.active > a {
+  color: white;
+}
+
+@media only screen and (min-width: 993px) {
+  nav .brand-logo:hover {
+    background-color: #FF8F00;
+  }
+}
+
+nav .brand-logo {
+  height: 64px;
+  padding: 0px 15px;
+}
+
+nav .brand-logo a {
+  font-weight: bold;
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+nav .brand-logo img {
+  width: auto;
+  height: 48px;
+  margin-top: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+  nav .brand-logo {
+    height: 54px;
+  }
+  nav .brand-logo img {
+    margin-top: 4px;
+  }
+}
+
+nav ul {
+  line-height: 63px;
+}
+
+nav ul a {
+  font-size: 1.2rem;
+}
+
+#mobile-nav a {
+  display: block;
+}
+
+/* Footer */
+
+footer a {
+  font-weight: bold;
+  color: white;
+}
+
+i.material-icons {
+  vertical-align: middle;
+}
+
+/* Content */
+
+main {
+  margin: 40px 0px;
+}
+
+body {
+  background: image-url('tiny_grid.png') repeat top center fixed;
+}
+
+.container.banner {
+  text-align: center;
+  background-color: white;
+  border: 2px solid #E0E0E0;
+  margin-top: 25px;
+  padding-top: 5px;
+}
+
+.container.banner img {
+  margin: 0 auto;
+  width: 600px;
+}
+
+.container.content {
+  background-color: white;
+  border: 2px solid #E0E0E0;
+  text-align: justify;
+  margin-top: 25px;
+  padding: 0px 20px;
+}
+
+.container.wide {
+  width: 95%;
+}
+.container.content h6 {
+  margin-top: 1.5rem;
+  font-weight: bold;
+}
+
+p.caption {
+  font-style: italic;
+}
+
+p.aside {
+  font-style: italic;
+  font-size: 11px;
+}
+
+p.bold {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+img.diagram {
+  border: 1px solid #d0d0d0;
+  margin: 5px 0px;
+}
+
+span.emphasis {
+  font-size: 1.64rem;
+  line-height: 1.804rem;
+}
+
+.container.content table tr th, .container.content table tr td {
+  text-align: center;
+  padding: 5px 5px;
+}
+
+.container.content table {
+  border: 1px solid #d0d0d0;
+}
+
+.container.content table tr td:first-child {
+  text-align: left;
+}
+
+.tab-wrapper {
+  display: table;
+  width: 100%;
+}
+
+.tabs {
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.tabs.input-tabs {
+  height: 100%;
+}
+
+.tabs.input-tabs li.tab {
+  height: 100%;
+  letter-spacing: 0px;
+  line-height: normal;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.tabs.input-tabs li.tab a {
+  padding: 14px 0px;
+}
+
+.content a, .tabs li.tab a {
+  @extend .indigo-text, .text-lighten-5;
+}
+
+.tabs li.tab:not(:first-child) {
+  border-left: 1px solid #3f51b5;
+}
+
+.tabs li.tab:not(.last-child) {
+  border-right: 1px solid #3f51b5;
+}
+
+.tabs li.tab:first-child {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.tabs li.tab.last-child {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.tabs li.tab a {
+  background-color: #E8EAF6;
+}
+
+.tabs.front-page li.tab a.active {
+  background-color: #FFECB3;
+}
+
+.tabs.results li.tab a.active {
+  background-color: #9FA8DA;
+}
+.tabs li.tab a:hover:not(.active) {
+  background-color: #c5cae9;
+}
+
+.tabs.front-page .indicator {
+  display: none;
+}
+
+.tabs.results .indicator {
+  @extend .indigo, .darken-2;
+  border-radius: 2px;
+}
+
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=url]:focus, 
+input[type=date]:focus, 
+input[type=tel]:focus, 
+input[type=number]:focus, 
+input[type=search]:focus, 
+textarea:focus.materialize-textarea {
+  border-bottom: 1px solid #FFA000;
+  -webkit-box-shadow: 0 1px 0 0 #FFA000;
+  -moz-box-shadow: 0 1px 0 0 #FFA000;
+  box-shadow: 0 1px 0 0 #FFA000;
+}
+
+input[type=text]:disabled {
+  border-bottom: 1px solid #9e9e9e;
+  color: black;
+  background-color: #eeeeee;
+}
+
+button.btn {
+  @extend .indigo, .darken-2;
+}
+
+.btn.file-btn,
+button.btn.example-btn {
+  @extend .amber, .darken-2;
+}
+
+.btn[type=submit] {
+  margin-right: 15px;
+}
+
+.btn[type=reset], .btn[type=submit], .btn[type=button] {
+  margin-bottom: 15px;
+}
+
+form,
+.result {
+  background-color: #FFECB3;
+  padding: 15px;
+}
+
+textarea#sequence_text {
+  height: 200px;
+}
+
+.form-example {
+  margin-bottom: 10px;
+}
+
+blockquote {
+  border-left: 5px solid #ffa000;
+}
+
+.bottom-links {
+  text-align: center;
+}
+
+a i.tiny.material-icons {
+  position: relative;
+  top: -2px;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #757575;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: #757575;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: #757575;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #757575;
+}
+
+label {
+  font-size: 15px;
+  color: #212121 !important;
+  text-align: left;
+  display: block;
+  margin-bottom: 10px;
+}
+
+[type="checkbox"] + label {
+  font-size: 15px;
+  color: #212121 !important;
+}
+
+.or {
+  display: inline-block;
+  position: relative;
+  top: -6px;
+  padding: 0px 10px;
+}
+
+.form_buttons {
+  text-align: left;
+}
+
+/* Special case: This is only for the form buttons outside a form,
+   this is the case for the file upload because of how jquery-fileupload
+   works */
+.tab-content > .form_buttons {
+  background-color: #FFECB3;
+  padding: 15px;
+  position: relative;
+}
+
+/* Alerts */
+
+.alert, .alert.alert-notice {
+  padding: 1rem;
+  border: 1px dashed #7e57c2;
+  background-color: #b39ddb;
+}
+
+.alert.error-explanation, .alert.alert-danger {
+  border: 1px dashed #EF5350;
+  background-color: #EF9A9A;
+}
+
+.alert.alert-danger.job-error {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.alert.alert-success {
+  border: 1px dashed #66bb6a;
+  background-color: #a5d6a7;
+}
+
+.alert #flash_notice {
+  display: inline;
+  margin-left: 10px;
+}
+
+.alert h6 {
+  margin-top: 0 !important;
+}
+
+.alert ul {
+  list-style-type: circle;
+  margin-bottom: 0px;
+}
+
+.alert ul li {
+  list-style-type: circle;
+  margin-left: 2rem;
+}
+
+/* Make input fields look more standard */ 
+input[type=text], textarea, input[type=search] {
+  background-color: #ffffff;
+  border: 1px solid #9e9e9e;
+  padding-left: 10px;
+}
+
+input[type=text] {
+  width: calc(100% - 10px);
+}
+
+input[type=search] {
+  display: inline;
+  width: auto;
+}
+
+.file-field input.file-path {
+  width: calc(100% - 14px);
+}
+
+input[type=text]:focus:not([readonly]),
+input[type=text].valid, 
+input[type=text]:focus.valid {
+  border: 1px solid #26a69a;
+  box-shadow: 0 1px 0 0 #26a69a;
+}
+
+textarea:focus,
+textarea:focus.valid,
+textarea.valid {
+  border: 1px solid #26a69a;
+  box-shadow: 0 1px 0 0 #26a69a;
+}
+
+input[type=text].invalid, 
+input[type=text]:focus.invalid {
+  border: 1px solid #f44336;
+  box-shadow: 0 1px 0 0 #f44336;
+}
+
+textarea:focus.invalid, 
+textarea.invalid {
+  border: 1px solid #f44336;
+  box-shadow: 0 1px 0 0 #f44336;
+}
+
+select.browser-default {
+  display: inline;
+  width: auto;
+}
+
+input.required-input,
+textarea.required-input {
+  border: 2px solid red !important;
+}
+
+@media only screen and (min-width: 660px) {
+  .remember_box {
+    float: right;
+  }
+}
+
+/* Fix table and datatable styles */
+td, th {
+  border-radius: 0px;
+}
+
+table.dataTable tr th {
+  background-color: #E8EAF6;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: none;
+  background-color: #9FA8DA;
+  border: 1px solid #3f51b5;
+  color: #3f51b5 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #3f51b5 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:active, 
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: none;
+  background-color: #E8EAF6;
+  color: #3f51b5 !important;
+  border: 1px solid transparent;
+}
+
+.clear {
+  clear: both;
+}
+
+// Used embed/object trick from https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php
+// to have fluid width for mobile as well as larger screens.
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+	margin: 10px 10%;
+}
+.videoWrapper object,
+.videoWrapper embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
