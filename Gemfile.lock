@@ -36,7 +36,7 @@ GIT
       favicon_maker
       jquery-turbolinks
       rails (~> 4.2.0)
-      rubyzip (>= 1.0.0)
+      rubyzip (~> 1.2.1)
       slim-rails
 
 GEM
